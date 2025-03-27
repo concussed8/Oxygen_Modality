@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Construction Mode – Dual Control, Object Panels, Hide/Unhide, CSS & HTML</title>
+  <style>
+/* Reset default margin/padding, give a neutral background */
+    body {
+      margin: 0;
+      padding: 0;
+      /* Center the phone container horizontally */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0; /* Just a neutral background for contrast */
+    }
+    
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6;
+    }
+    /* Header styling (non-draggable) */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 1%;
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+    
+
+    /* --- New Containers Module inside Phone Container --- */
+    /* Draggable container common styles */
+    .draggable-container {
+      position: absolute;
+      border: 4px solid #333;
+      border-radius:8px;
+      background: #fff;
+      padding: 10px;
+      cursor: grab;
+      user-select: none;
+      z-index: 110;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+    /* Specific positions for each container */
+    .container1 { top: 23.76%; left: 0.66%; }
+    .container2 { top: 41.54%; left: 3.85%; }
+    .container3 { top: 60%; left: 5%; }
+    /* Form & radio button styling */
+    .draggable-container form { margin: 0; }
+    .draggable-container label { margin-right: 5px; }
+ 
+    /* --- End New Containers Module --- */
+
+    /* Existing image styles (if you still need them) */
+    #movablebreathing_effectively {
+      position: absolute;
+      left: 5.23%;
+      transform: none;
+      top: 6.89%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: transparent;
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 1000;
+      width: 90%;
+      height: 11.99%;
+    }
+
+    #movableeffective_breathing_criteria {
+  position: absolute;
+  left: -4%;
+  transform: none;
+  top: 15.94%;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  font-family: Arial, sans-serif;
+  padding: 0;
+  border-radius: 0;
+  margin: 0;
+  white-space: normal;
+  z-index: 1100;
+  width: 110%;
+  height: 93%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+/* Existing image styles (if you still need them) */
+    #movableDiaphragmatic_breathing {
+    position: absolute;
+    left: 35.91%;
+    transform: none;
+    top: 16.32%;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    font-family: Arial, sans-serif;
+    padding: 0px;
+    border-radius: 0px;
+    margin: 0px;
+    white-space: normal;
+    z-index: 100;
+    width: 65.74%;
+    height: 20%;
+}
+
+#movableeffective_breathing_criteria:hover {
+  transform: scale(1.05);
+}
+
+ /* Existing image styles (if you still need them) */
+   #movableSOB {
+    position: absolute;
+    left: 51.48%;
+    transform: none;
+    top: 57.34%;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    font-family: Arial, sans-serif;
+    padding: 0px;
+    border-radius: 0px;
+    margin: 0px;
+    white-space: normal;
+    z-index: 90;
+    width: 43.46%;
+    height: 23.42%;
+}
+/* Existing image styles (if you still need them) */
+#movableGCS {
+    position: absolute;
+    left: 2.55%;
+    transform: none;
+    top: 62.88%;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    font-family: Arial, sans-serif;
+    padding: 0px;
+    border-radius: 0px;
+    margin: 0px;
+    white-space: normal;
+    z-index: 80;
+    width: 56.45%;
+    height: 24.46%;
+}
+#movablecontinue_button {
+    position: absolute;
+    left: 22.77%;
+    transform: none;
+    top: 80.00%;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    font-family: Arial, sans-serif;
+    padding: 0px;
+    border-radius: 0px;
+    margin: 0px;
+    white-space: normal;
+    z-index: 90;
+    width: 47.45%;
+    height: 22.96%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+#movablecontinue_button:hover {
+  transform: scale(1.05);
+}
+
+    
+  </style>
+</head>
+<body>
+  <!-- Left Controls Panel -->
+  <!--<div class="controls left">
+    <label for="topPosition">TOP</label>
+    <input type="text" id="topPosition" readonly>
+    
+    <label for="leftPosition">LEFT</label>
+    <input type="text" id="leftPosition" readonly>
+    
+    <label for="sizeControl">SIZE</label>
+    <input type="range" id="sizeControl" min="10" max="200" value="100">
+    <div class="input-wrapper">
+      <input type="number" id="sizeOutput" min="10" max="200" value="100">
+      <span class="unit">%</span>
+    </div>
+    
+    <label for="widthControl">WIDTH</label>
+    <input type="range" id="widthControl" min="10" max="200" value="100">
+    <div class="input-wrapper">
+      <input type="number" id="widthOutput" min="10" max="200" value="100">
+      <span class="unit">%</span>
+    </div>
+    
+    <label for="heightControl">HEIGHT</label>
+    <input type="range" id="heightControl" min="10" max="200" value="100">
+    <div class="input-wrapper">
+      <input type="number" id="heightOutput" min="10" max="200" value="100">
+      <span class="unit">%</span>
+    </div>
+  </div>-->
+  
+  <!-- Smartphone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <!-- Header -->
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+    
+    <!-- New Draggable Containers Module -->
+    <!-- Container 1 with 3 radio buttons -->
+    <div class="draggable-container container1" id="container1">
+      <form>
+        <input type="radio" name="group1" id="r1a" value="a" checked>
+	<label for="r1a">RR &lt; 12</label><br>
+        <input type="radio" name="group1" id="r1b" value="b">
+        <label for="r1b">RR 12-20</label><br>
+        <input type="radio" name="group1" id="r1c" value="c">
+<label for="r1c">RR &gt; 20</label>
+
+      </form>
+    </div>
+<!-- New Draggable Containers Module -->
+    <!-- Container 2 with 3 radio buttons -->
+    <div class="draggable-container container2" id="container2">
+      <form>
+        <input type="radio" name="group2" id="r2a" value="a" checked>
+	<label for="r2a">&darr; LOC</label><br>
+        <input type="radio" name="group2" id="r2b" value="b">
+        <label for="r2b">GCS 14/15, Speaking in full sentences</label><br>
+        <input type="radio" name="group2" id="r2c" value="c">
+       <label for="r2c">&uarr; Work of Breathing</label>
+      </form>
+    </div>
+<!-- New Draggable Containers Module -->
+  <!-- Container 3 with 3 radio buttons -->
+   <!-- <div class="draggable-container container3" id="container1">
+      <form>
+        <input type="radio" name="group3" id="r3a" value="a" checked>
+        <label for="r3a">Option A</label><br>
+        <input type="radio" name="group3" id="r3b" value="b">
+        <label for="r3b">Option B</label><br>
+        <input type="radio" name="group3" id="r3c" value="c">
+        <label for="r3c">Option C</label>
+      </form>
+    </div>-->
+   
+    
+     <!--(Optional: Retain original images if desired)-->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/effective_breathing_criteria.png" alt="effective_breathing_criteria" class="movable hideable" id="movableeffective_breathing_criteria">
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/breathing_effectively.png" alt="breathing_effectively" class="movable hideable" id="movablebreathing_effectively">
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/Diaphragmatic_breathing.gif" alt="Diaphragmatic_breathing" class="movable hideable" id="movableDiaphragmatic_breathing">
+<img src="https://concussed8.github.io/Oxygen_Modality/Images/SOB.gif" alt="SOB" class="movable hideable" id="movableSOB">
+<video autoplay loop muted class="movable hideable" id="movableGCS">
+  <source src="https://concussed8.github.io/Oxygen_Modality/Images/GCSmov.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button"
+class="movable hideable" id="movablecontinue_button">
+
+  </div>
+  
+  <!-- Emulator Button -->
+  <!--<div class="emulator-container">
+    <button id="emulatorButton">EMULATOR</button>
+  </div>-->
+  
+  <!-- Right Controls Panel -->
+  <!--<div class="controls right">
+    <label for="h1TopControl">H1 TOP</label>
+    <input type="range" id="h1TopControl" min="0" max="100" value="5">
+    <div class="input-wrapper">
+      <input type="number" id="h1TopOutput" min="0" max="100" value="5">
+      <span class="unit">%</span>
+    </div>
+    <div class="object-buttons">
+      <button id="hideObject">Hide Object</button>
+      <button id="unhideObject">Unhide Object</button>
+    </div>
+  </div>-->
+  
+  <!-- Objects Panel -->
+  <!--<div class="controls far-right">
+    <fieldset class="objects-fieldset">
+      <legend>Displayed Objects</legend>
+      <select id="displayedObjects" size="6" disabled></select>
+    </fieldset>
+    <fieldset class="objects-fieldset">
+      <legend>Hidden Objects</legend>
+      <select id="hiddenObjects" size="6"></select>
+    </fieldset>
+    <fieldset class="objects-fieldset">
+      <legend>Object CSS</legend>
+      <textarea id="objectCSS" readonly placeholder="No object selected..."></textarea>
+    </fieldset>
+    <fieldset class="objects-fieldset">
+      <legend>Object HTML</legend>
+      <textarea id="objectHTML" readonly placeholder="No object selected..."></textarea>
+    </fieldset>
+  </div>-->
+  
+  <script>
+    
+
+document.getElementById('movableeffective_breathing_criteria')
+  .addEventListener('click', function() {
+    this.style.display = 'none';
+  });
+
+
+
+
+// INITIALIZATION ON PAGE LOAD
+h1TopOutput.value = h1TopControl.value;
+updateObjectLists();
+</script>
+</body>
+</html>
