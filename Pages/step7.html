@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Construction Mode – Dual Control, Object Panels, Hide/Unhide, CSS & HTML</title>
+  <style>
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6;
+    }
+    /* H1 styling with custom CSS controls (non-draggable) */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+      top: 1%;
+    }
+    #movablebipap_initiate {
+      position: absolute;
+      left: 75%;
+      transform: translateX(-50%);
+      top: 9.40%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 100;
+      width: 48%;
+      height: 27.07%;
+    }
+    #movableBiPAP {
+      position: absolute;
+      left: 40%;
+      transform: translateX(-50%);
+      top: 15%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 100;
+      width: 65%;
+      height: 35%;
+    }
+    /* CSS for the pdf */
+    #movablepdf {
+      position: absolute;
+      left: 0%;
+      transform: none;
+      top: 70%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 1000;
+      width: 32%;
+      height: 17%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #movablepdf:hover {
+      transform: scale(1.35);
+    }
+    /* CSS for the pdf2 */
+    #movablepdf2 {
+      position: absolute;
+      left: 0%;
+      transform: none;
+      top: 55%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 1000;
+      width: 32%;
+      height: 17%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #movablepdf2:hover {
+      transform: scale(1.35);
+    }
+    /* CSS for the bipap_intiation_title.png */
+    #movablebipap_intiation_title {
+      position: absolute;
+      left:27%;
+      transform: none;
+      top: 59%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 1000;
+      width: 75%;
+      height: 12%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    /* CSS for the bipap_tips_tricks.png */
+    #movablebipap_tips_tricks {
+      position: absolute;
+      left:27%;
+      transform: none;
+      top: 74%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 1000;
+      width: 75%;
+      height: 12%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    /* CSS for the continue button */
+    #movablecontinue_button {
+      position: absolute;
+      left: 22.77%;
+      transform: none;
+      top: 83%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 1000;
+      width: 47.45%;
+      height: 21%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #movablecontinue_button:hover {
+      transform: scale(1.05);
+    }
+    /* === Three-Way Toggle Styles === */
+    .toggle-container {
+      position: absolute;
+      width: 150px;
+      height: 50px;
+      left: 50%;
+      top: 95%;
+      transform: translateX(-50%) perspective(200px) rotateX(2deg);
+      background: linear-gradient(145deg, #444, #222);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    /* Hide radio buttons */
+    .toggle-container input[type="radio"] {
+      display: none;
+    }
+    /* The slider circle with increased size */
+    .toggle-slider {
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+      border-radius: 50%;
+      transform: translate(-10%, -50%);
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+    }
+    /* When option 1 is checked (left): center at 25px and green gradient */
+    #option1:checked ~ .toggle-slider {
+      left: 25px;   
+      background: linear-gradient(145deg, #8ef08e, #4caf50);
+    }
+    /* When option 2 is checked (neutral): center at 75px and yellow gradient */
+    #option2:checked ~ .toggle-slider {
+      left: 75px;   
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+    }
+    /* When option 3 is checked (right): center at 125px and red gradient */
+    #option3:checked ~ .toggle-slider {
+      left: 125px;  
+      background: linear-gradient(145deg, #ff8a80, #ff5252);
+    }
+    /* Move slider based on which radio is checked */
+    #option1:checked ~ .toggle-slider {
+      left: 0;
+    }
+    #option2:checked ~ .toggle-slider {
+      left: 50px;
+    }
+    #option3:checked ~ .toggle-slider {
+      left: 100px;
+    }
+    /* Style the labels so they are clickable and on top of the slider */
+    .toggle-label {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      z-index: 1;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Smartphone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <!-- H1 element with custom styling (non-draggable) -->
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+ 
+    <!-- Movable object: bipap_initiate.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/bipap_initiate.png" alt="bipap_initiate" class="movable hideable" id="movablebipap_initiate">    
+ 
+    <!-- Movable object: BiPAP.gif -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/BiPAP.gif" alt="BiPAP" class="movable hideable" id="movableBiPAP">
+
+    <!-- Movable object: pdf.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/pdf.png" alt="pdf" class="movable hideable" id="movablepdf">
+
+    <!-- Movable object: bipap_intiation_title.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/bipap_intiation_title.png" alt="bipap_intiation_title" class="movable hideable" id="movablebipap_intiation_title">
+
+    <!-- Movable object: pdf2.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/pdf2.png" alt="pdf2" class="movable hideable" id="movablepdf2">
+
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/bipap_tips_tricks.png" alt="bipap_tips_tricks" class="movable hideable" id="movablebipap_tips_tricks">
+
+    <!-- Movable object: continue_button.png (added for functionality) -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
+    
+    <!-- Three-Way Toggle (movable and hideable) -->
+    <!--<div class="toggle-container movable hideable">
+      <input type="radio" name="toggle" id="option1">
+      <input type="radio" name="toggle" id="option2" checked>
+      <input type="radio" name="toggle" id="option3">
+      <div class="toggle-slider"></div>
+      <label class="toggle-label" for="option1">YES</label>
+      <label class="toggle-label" for="option2">0</label>
+      <label class="toggle-label" for="option3">NO</label>-->
+    </div>
+  </div>
+  
+  <script>
+    // Get references to the images and continue button
+    const respondingYesImg = document.getElementById('movableresponding_yes');
+    const respondingNoImg = document.getElementById('movableresponding_no');
+    const continueBtn = document.getElementById('movablecontinue_button');
+    
+    // Set initial state: neutral (hide both images and hide continue button)
+    if (respondingYesImg && respondingNoImg && continueBtn) {
+      respondingYesImg.style.display = "none";
+      respondingNoImg.style.display = "none";
+      continueBtn.style.display = "none";
+    }
+    
+    // Listen for toggle changes and update images accordingly
+    const radios = document.querySelectorAll('input[name="toggle"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (document.getElementById('option1').checked) {
+          console.log('Option 1 selected: responding_yes.png displayed');
+          respondingYesImg.style.display = "block";
+          respondingNoImg.style.display = "none";
+          continueBtn.style.display = "block";
+        } else if (document.getElementById('option3').checked) {
+          console.log('Option 3 selected: responding_no.png displayed');
+          respondingYesImg.style.display = "none";
+          respondingNoImg.style.display = "block";
+          continueBtn.style.display = "block";
+        } else if (document.getElementById('option2').checked) {
+          console.log('Neutral selected: no images displayed');
+          respondingYesImg.style.display = "none";
+          respondingNoImg.style.display = "none";
+          continueBtn.style.display = "none";
+        }
+      });
+    });
+    
+    // Swapped functionality: Open the respective PDF when an image is clicked.
+    // Clicking pdf.png now opens BiPAP Tips and Tricks.pdf
+    document.getElementById('movablepdf').addEventListener('click', function() {
+      window.open('https://concussed8.github.io/Oxygen_Modality/Files/BiPAP%20Tips%20and%20Tricks.pdf', '_blank');
+    });
+    
+    // Clicking pdf2.png now opens BiPAP Initiation Guidelines.pdf
+    document.getElementById('movablepdf2').addEventListener('click', function() {
+      window.open('https://concussed8.github.io/Oxygen_Modality/Files/BiPAP%20Initiation%20Guidelines.pdf', '_blank');
+    });
+  </script>
+</body>
+</html>

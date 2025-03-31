@@ -97,10 +97,18 @@
       width: 60%;
       height: 20%;
     }
+ @keyframes doublePulse {
+      0% { transform: scale(1); }
+      10% { transform: scale(1.1); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.1); }
+      40% { transform: scale(1); }
+      100% { transform: scale(1); }
+}
     /* Individual CSS for initiate_bipap.png */
     #movableinitiate_bipap {
       position: absolute;
-       left: 50%;
+       left: 12.5%;
       transform: translateX(-50%);
       top: 55%;
       font-size: 16px;
@@ -114,6 +122,7 @@
       z-index: 100;
       width: 75%;
       height: 36.08%;
+	animation: doublePulse 2s infinite;
     }
     /* Transparent Text Box CSS */
     #remove_obstructions {
@@ -332,38 +341,50 @@
   </div>
   
   <script>
-    // Get references to the images and continue button 
-    const initiateBipapImg = document.getElementById('movableinitiate_bipap');
-    const hypercapNoRR12Img = document.getElementById('movablehypercap_no_rr12');
-    const continueBtn = document.getElementById('movablecontinue_button');
-    
-    // Set initial state: neutral (hide both images and hide continue button)
-    initiateBipapImg.style.display = "none";
-    hypercapNoRR12Img.style.display = "none";
-    continueBtn.style.display = "none";
-    
-    // Listen for toggle changes and update images accordingly
-    const radios = document.querySelectorAll('input[name="toggle"]');
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (document.getElementById('option1').checked) {
-          console.log('Option 1 selected: initiate_bipap.png displayed');
-          initiateBipapImg.style.display = "block";
-          hypercapNoRR12Img.style.display = "none";
-          continueBtn.style.display = "block";
-        } else if (document.getElementById('option3').checked) {
-          console.log('Option 3 selected: hypercap_no_rr12.png displayed');
-          initiateBipapImg.style.display = "none";
-          hypercapNoRR12Img.style.display = "block";
-          continueBtn.style.display = "block";
-        } else if (document.getElementById('option2').checked) {
-          console.log('Neutral selected: no images displayed');
-          initiateBipapImg.style.display = "none";
-          hypercapNoRR12Img.style.display = "none";
-          continueBtn.style.display = "none";
-        }
-      });
+  // Get references to the images and continue button 
+  const initiateBipapImg = document.getElementById('movableinitiate_bipap');
+  const hypercapNoRR12Img = document.getElementById('movablehypercap_no_rr12');
+  const continueBtn = document.getElementById('movablecontinue_button');
+  
+  // Set initial state: neutral (hide both images and hide continue button)
+  initiateBipapImg.style.display = "none";
+  hypercapNoRR12Img.style.display = "none";
+  continueBtn.style.display = "none";
+  
+  // Listen for toggle changes and update images accordingly
+  const radios = document.querySelectorAll('input[name="toggle"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (document.getElementById('option1').checked) {
+        console.log('Option 1 selected: initiate_bipap.png displayed');
+        initiateBipapImg.style.display = "block";
+        hypercapNoRR12Img.style.display = "none";
+        continueBtn.style.display = "block";
+      } else if (document.getElementById('option3').checked) {
+        console.log('Option 3 selected: hypercap_no_rr12.png displayed');
+        initiateBipapImg.style.display = "none";
+        hypercapNoRR12Img.style.display = "block";
+        continueBtn.style.display = "block";
+      } else if (document.getElementById('option2').checked) {
+        console.log('Neutral selected: no images displayed');
+        initiateBipapImg.style.display = "none";
+        hypercapNoRR12Img.style.display = "none";
+        continueBtn.style.display = "none";
+      }
     });
-  </script>
+  });
+  
+  // When the continue button is pressed, check which slider option is selected and redirect accordingly
+  continueBtn.addEventListener('click', () => {
+    if (document.getElementById('option3').checked) {
+      // Slider is to the right -> redirect to step3a.html
+      window.location.href = "step3a.html";
+    } else if (document.getElementById('option1').checked) {
+      // Slider is to the left -> redirect to step7.html
+      window.location.href = "step7.html";
+    }
+  });
+</script>
+
 </body>
 </html>

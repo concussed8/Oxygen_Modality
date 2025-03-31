@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Phone Container Only</title>
+  <style>
+   /* Reset default margin/padding, give a neutral background */
+    body {
+      margin: 0;
+      padding: 0;
+      /* Center the phone container horizontally */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0; /* Just a neutral background for contrast */
+    }
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6;
+    }
+    /* H1 styling */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 1%;
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+    /* Base style for movable objects */
+    .movable {
+      position: absolute;
+      cursor: pointer;
+      /* Default centering transform (overridden by individual rules if needed) */
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+    /* Individual CSS for STOP_intubate.png */
+#movableSTOP_intubate {
+  position: absolute;
+  left: 50%;
+  top: 9.55%;
+  width: 92.80%;
+  height: 34.28%;
+  transform: translateX(-50%);
+}
+
+    /* Individual CSS for yes.png */
+    #movableyes {
+      left: 70%;
+      top: 79.81%;
+      width: 23.32%;
+      height: 14.16%;
+      transform: none;
+    }
+    /* Individual CSS for no.png */
+    #movableno {
+      left: 5.5%;
+      top: 79.81%;
+      width: 23.32%;
+      height: 14.16%;
+      transform: none;
+    }
+    /* Individual CSS for pdf.png */
+    #movablepdf {
+      left: -5.21%;
+      top: 54.03%;
+      width: 40.49%;
+      height: 23.19%;
+      transform: none;
+    }
+#movablepdf:hover {
+  transform: scale(1.10);
+}
+    /* Individual CSS for click_here.png */
+    #movableclick_here {
+      left: 34.57%;
+      top: 53.12%;
+      width: 52.95%;
+      height: 23.57%;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Smartphone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <!-- H1 element -->
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+
+    <!-- Movable object: STOP_intubate.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/STOP_intubate.png" alt="STOP_intubate" class="movable hideable" id="movableSTOP_intubate">
+
+    <!-- Movable object: yes.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/yes.png" alt="yes" class="movable hideable" id="movableyes">
+
+    <!-- Movable object: no.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/no.png" alt="no" class="movable hideable" id="movableno">
+
+    <!-- Movable object: pdf.png (click to download PDF) -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/Files/Intubation_Checklist.pdf" download>
+      <img src="https://concussed8.github.io/Oxygen_Modality/Images/pdf.png" alt="pdf" class="movable hideable" id="movablepdf">
+    </a>
+
+    <!-- Movable object: click_here.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/click_here.png" alt="click_here" class="movable hideable" id="movableclick_here">
+  </div>
+</body>
+</html>
