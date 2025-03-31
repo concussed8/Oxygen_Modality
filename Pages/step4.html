@@ -326,6 +326,7 @@ class="movable hideable" id="movablecontinue_button">
       this.style.display = 'none';
     });
 
+
   document.getElementById('movablecontinue_button').addEventListener('click', function() {
     var isR1aSelected = document.getElementById('r1a').checked;
     var isR1bSelected = document.getElementById('r1b').checked;
@@ -334,17 +335,19 @@ class="movable hideable" id="movablecontinue_button">
     var isR2bSelected = document.getElementById('r2b').checked;
     var isR2cSelected = document.getElementById('r2c').checked;
     
-    if (isR1bSelected && isR2bSelected) {
+    if (isR1bSelected && (isR2bSelected || isR2aSelected)) {
       window.location.href = "step5.html";
     } else if (isR1aSelected && isR2aSelected) {
       window.location.href = "step4a.html";
-    } else if (isR1cSelected && isR2cSelected) {
+    } else if (isR1cSelected && isR2bSelected) {
       window.location.href = "step4b.html";
     }
   });
 
   h1TopOutput.value = h1TopControl.value;
   updateObjectLists();
+</script>
+
 </script>
 
 
