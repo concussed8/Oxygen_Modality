@@ -320,7 +320,7 @@ class="movable hideable" id="movablecontinue_button">
     </fieldset>
   </div>-->
   
- <script>
+<script>
   // Hide the effective breathing criteria image when clicked
   document.getElementById('movableeffective_breathing_criteria')
     .addEventListener('click', function() {
@@ -329,10 +329,15 @@ class="movable hideable" id="movablecontinue_button">
 
   // When the continue image is clicked, check radio button selections and redirect if conditions are met
   document.getElementById('movablecontinue_button').addEventListener('click', function() {
+    var isR1aSelected = document.getElementById('r1a').checked;
     var isR1bSelected = document.getElementById('r1b').checked;
+    var isR2aSelected = document.getElementById('r2a').checked;
     var isR2bSelected = document.getElementById('r2b').checked;
+    
     if (isR1bSelected && isR2bSelected) {
-      window.location.href = "step5.html"; // Adjust path if necessary for your GitHub Pages directory
+      window.location.href = "step5.html"; // Redirect to step5 if r1b and r2b are selected
+    } else if (isR1aSelected && isR2aSelected) {
+      window.location.href = "step4a.html"; // Redirect to step4a if r1a and r2a are selected
     }
   });
 
@@ -340,6 +345,7 @@ class="movable hideable" id="movablecontinue_button">
   h1TopOutput.value = h1TopControl.value;
   updateObjectLists();
 </script>
+
 
 </body>
 </html>
