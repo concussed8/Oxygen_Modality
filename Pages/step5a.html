@@ -47,8 +47,8 @@
       z-index: 1000;
     }
 
-    /* Image: step2_question.png */
-    #movableRR_more_12_hyper_no {
+    /* Image: airvo_effectiveness.png */
+    #movableairvo_effectiveness {
       position: absolute;
       transform: translateX(-50%);
       left: 50%;
@@ -81,8 +81,8 @@
   transform: scale(1.25);
 }
 
-/* CSS for the monitor_closely.png */
-    #movablemonitor_closely {
+/* CSS for the wean_as_needed.png */
+    #movablewean_as_needed {
    position: absolute;
       transform: translateX(-50%);
       left: 50%;
@@ -93,14 +93,14 @@
     }
 
 
-/* CSS for the consider_airvo.png */
-    #movableconsider_airvo {
+/* CSS for the consider_ventilation.png */
+    #movableconsider_ventilation {
    position: absolute;
       transform: translateX(-50%);
       left: 50%;
-      top: 56%;
+      top: 60%;
       width: 75%;
-      height: 35%;
+      height: 25%;
       z-index: 100;
     }
 
@@ -181,13 +181,13 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       font-weight: bold;
     }
-/* Individual CSS for RR_more_20_effective.png */
-#movableRR_more_20_effective {
+/* Individual CSS for effective2.png */
+#movableeffective2 {
   position: absolute;
-  left: 30%;
+  left: 34%;
   transform: translateX(-50%);
   transform: none;
-  top: 30%;
+  top: 38%;
   font-size: 16px;
   color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0);
@@ -196,9 +196,9 @@
   border-radius: 0px;
   margin: 0px;
   white-space: normal;
-  z-index: 1000;
-  width: 40%;
-  height: 18%;
+  z-index: 100;
+  width: 35%;
+  height: 12%;
   animation: doublePulse 2s infinite;
 }
 
@@ -230,22 +230,22 @@
   <div class="phone-container" id="phoneContainer">
     <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
     
-    <!-- RR_more_12_hyper_no.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/RR_more_12_hyper_no.png" alt="RR_more_12_hyper_no"
-      id="movableRR_more_12_hyper_no">
+    <!-- airvo_effectiveness.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/airvo_effectiveness.png" alt="airvo_effectiveness"
+      id="movableairvo_effectiveness">
 
 <!-- Object: continue_button.png -->
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
 
-<!-- Object: RR_more_20_effective.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/RR_more_20_effective.png" alt="RR_more_20_effective" class="movable hideable" id="movableRR_more_20_effective">
+<!-- Object: effective2.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/effective2.png" alt="effective2" class="movable hideable" id="movableeffective2">
 
 
-<!-- Object: monitor_closely.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/monitor_closely.png" alt="monitor_closely" class="movable hideable" id="movablemonitor_closely">
+<!-- Object: wean_as_needed.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/wean_as_needed.png" alt="wean_as_needed" class="movable hideable" id="movablewean_as_needed">
 
-<!-- Object: consider_airvo.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/consider_airvo.png" alt="consider_airvo" class="movable hideable" id="movableconsider_airvo">
+<!-- Object: consider_ventilation.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/consider_ventilation.png" alt="consider_ventilation" class="movable hideable" id="movableconsider_ventilation">
 
 <!-- Three-Way Toggle (static) -->
     <div class="toggle-container">
@@ -262,15 +262,15 @@
       <label class="toggle-label" for="option3">NO</label>
     </div>
   </div>
- <script>
-  // Get references to the images and continue button
-const monitorCloselyImg = document.getElementById('movablemonitor_closely');
-const considerAirvoImg = document.getElementById('movableconsider_airvo');
+<script>
+// Get references to the images and continue button
+const weanAsNeededImg = document.getElementById('movablewean_as_needed');
+const considerVentilationImg = document.getElementById('movableconsider_ventilation');
 const continueBtn = document.getElementById('movablecontinue_button');
 
 // Set initial state: hide both images and the continue button
-monitorCloselyImg.style.display = "none";
-considerAirvoImg.style.display = "none";
+weanAsNeededImg.style.display = "none";
+considerVentilationImg.style.display = "none";
 continueBtn.style.display = "none";
 
 // Listen for toggle changes and update image visibility accordingly
@@ -278,26 +278,25 @@ const radios = document.querySelectorAll('input[name="toggle"]');
 radios.forEach(radio => {
   radio.addEventListener('change', () => {
     if (document.getElementById('option1').checked) {
-      console.log('Left selected: monitor_closely.png displayed');
-      monitorCloselyImg.style.display = "block";
-      considerAirvoImg.style.display = "none";
+      console.log('Left selected: wean_as_needed.png displayed');
+      weanAsNeededImg.style.display = "block";
+      considerVentilationImg.style.display = "none";
+      continueBtn.style.display = "block";
+    } else if (document.getElementById('option3').checked) {
+      console.log('Right selected: consider_ventilation.png displayed');
+      weanAsNeededImg.style.display = "none";
+      considerVentilationImg.style.display = "block";
       continueBtn.style.display = "block";
     } else if (document.getElementById('option2').checked) {
-      console.log('Neutral selected: nothing displayed');
-      monitorCloselyImg.style.display = "none";
-      considerAirvoImg.style.display = "none";
+      console.log('Neutral selected: no image displayed');
+      weanAsNeededImg.style.display = "none";
+      considerVentilationImg.style.display = "none";
       continueBtn.style.display = "none";
-    } else if (document.getElementById('option3').checked) {
-      console.log('Right selected: consider_airvo.png displayed');
-      monitorCloselyImg.style.display = "none";
-      considerAirvoImg.style.display = "block";
-      continueBtn.style.display = "block";
     }
   });
 });
 
-
-    </script>
+</script>
 
 </body>
 </html>
