@@ -10,12 +10,11 @@
     body {
       margin: 0;
       padding: 0;
-      /* Center the phone container horizontally */
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
-      background: #f0f0f0; /* Just a neutral background for contrast */
+      background: #f0f0f0;
     }
 
     /* Smartphone container simulation */
@@ -23,10 +22,10 @@
       position: relative;
       width: 375px;
       height: 667px;
-      border: 4px solid #4169E1; /* Royal Blue border */
+      border: 4px solid #4169E1;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      background-color: #ADD8E6; /* Light blue background */
+      background-color: #ADD8E6;
       margin: 20px;
     }
 
@@ -38,7 +37,7 @@
       top: 1%;
       font-size: 22px;
       color: #ffffff;
-      background-color: #4169E1; /* Royal Blue */
+      background-color: #4169E1;
       font-family: "Comic Sans MS", cursive, sans-serif;
       padding: 10px 20px;
       border-radius: 4px;
@@ -47,73 +46,64 @@
       z-index: 1000;
     }
 
-  /* Image: step2_question.png */
-#movablestep2_question {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 17%;
-  width: 79%;
-  height: 33%;
-  z-index: 100;
-}
-/* === Three-Way Toggle Styles === */
-.toggle-container {
-  position: absolute;
-  width: 150px;
-  height: 50px;
-  left: 50%;        /* Position left edge at 50% of the parent */
-  top: 60%;
-  transform: translateX(-50%) perspective(200px) rotateX(2deg);
-  background: linear-gradient(145deg, #444, #222);
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
+    /* Image: step2_question.png */
+    #movablestep2_question {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 17%;
+      width: 79%;
+      height: 33%;
+      z-index: 100;
+    }
 
+    /* === Three-Way Toggle Styles === */
+    .toggle-container {
+      position: absolute;
+      width: 150px;
+      height: 50px;
+      left: 50%;
+      top: 60%;
+      transform: translateX(-50%) perspective(200px) rotateX(2deg);
+      background: linear-gradient(145deg, #444, #222);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
 
-    /* Hide radio buttons */
     .toggle-container input[type="radio"] {
       display: none;
     }
-/* The slider circle with increased size */
-.toggle-slider {
-  position: absolute;
-  top: 50%;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(145deg, #FFFF00, #FFD700); /* default yellow gradient */
-  border-radius: 50%;
-  transform: translate(-10%, -50%); /* centers the circle relative to its left position */
-  transition: 0.3s;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
-}
 
-/* When option 1 is checked (left): center at 25px and green gradient */
-#option1:checked ~ .toggle-slider {
-  left: 25px;   
-  background: linear-gradient(145deg, #8ef08e, #4caf50);
-}
+    .toggle-slider {
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+      border-radius: 50%;
+      transform: translate(-10%, -50%);
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+    }
 
-/* When option 2 is checked (neutral): center at 75px and yellow gradient */
-#option2:checked ~ .toggle-slider {
-  left: 75px;   
-  background: linear-gradient(145deg, #FFFF00, #FFD700);
-}
+    #option1:checked ~ .toggle-slider {
+      left: 25px;   
+      background: linear-gradient(145deg, #8ef08e, #4caf50);
+    }
+    #option2:checked ~ .toggle-slider {
+      left: 75px;   
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+    }
+    #option3:checked ~ .toggle-slider {
+      left: 125px;  
+      background: linear-gradient(145deg, #ff8a80, #ff5252);
+    }
 
-/* When option 3 is checked (right): center at 125px and red gradient */
-#option3:checked ~ .toggle-slider {
-  left: 125px;  
-  background: linear-gradient(145deg, #ff8a80, #ff5252);
-}
-
-
-
-    /* Move slider based on which radio is checked */
     #option1:checked ~ .toggle-slider {
       left: 0;
     }
@@ -123,7 +113,7 @@
     #option3:checked ~ .toggle-slider {
       left: 100px;
     }
-    /* Style the labels so they are clickable and on top of the slider */
+
     .toggle-label {
       flex: 1;
       text-align: center;
@@ -133,7 +123,8 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       font-weight: bold;
     }
-/* CSS for the continue button */
+
+    /* CSS for the continue button */
     #movablecontinue_button {
       position: absolute;
       left: 22.77%;
@@ -143,20 +134,20 @@
       color: rgb(0, 0, 0);
       background-color: rgba(0, 0, 0, 0);
       font-family: Arial, sans-serif;
-      padding: 0px;
-      border-radius: 0px;
-      margin: 0px;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
       white-space: normal;
       z-index: 1000;
       width: 47.45%;
       height: 22.96%;
       cursor: pointer;
       transition: transform 0.2s ease;
+      pointer-events: auto; /* Ensure it receives pointer events */
     }
-#movablecontinue_button:hover {
-  transform: scale(1.25);
-}
-
+    #movablecontinue_button:hover {
+      transform: scale(1.25);
+    }
   </style>
 </head>
 <body>
@@ -168,48 +159,62 @@
     <img
       src="https://concussed8.github.io/Oxygen_Modality/Images/step2_question.png"
       alt="step2_question"
-      id="movablestep2_question"
+      id="movablestep2_question">
     
-<!-- Object: continue_button.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
-<!-- Three-Way Toggle (static) -->
+    <!-- Object: continue_button.png (removed the 'hideable' class) -->
+    <img 
+      src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" 
+      alt="continue_button" 
+      id="movablecontinue_button">
+    
+    <!-- Three-Way Toggle (static) -->
     <div class="toggle-container">
-      <!-- Left radio -->
+      <!-- Left radio (YES) -->
       <input type="radio" name="toggle" id="option1">
       <!-- Middle (neutral) radio -->
       <input type="radio" name="toggle" id="option2" checked>
-      <!-- Right radio -->
+      <!-- Right radio (NO) -->
       <input type="radio" name="toggle" id="option3">
       <div class="toggle-slider"></div>
       <label class="toggle-label" for="option1">YES</label>
-      <!-- Neutral label: clicking this does nothing -->
       <label class="toggle-label" for="option2">0</label>
       <label class="toggle-label" for="option3">NO</label>
     </div>
   </div>
-<script>
-// Get a reference to the continue button
-const continueBtn = document.getElementById('movablecontinue_button');
 
-// Set initial state: hide the continue button
-continueBtn.style.display = "none";
-
-// Listen for toggle changes and update continue button visibility accordingly
-const radios = document.querySelectorAll('input[name="toggle"]');
-radios.forEach(radio => {
-  radio.addEventListener('change', () => {
-    if (document.getElementById('option1').checked || document.getElementById('option3').checked) {
-      console.log('Left or Right selected: continue.png displayed');
-      continueBtn.style.display = "block";
-    } else if (document.getElementById('option2').checked) {
-      console.log('Neutral selected: continue.png hidden');
-      continueBtn.style.display = "none";
-    }
-  });
-});
-
-</script>
+  <script>
+    // Get a reference to the continue button
+    const continueBtn = document.getElementById('movablecontinue_button');
     
-  </div>
+    // Hide the continue button initially
+    continueBtn.style.display = "none";
+    
+    // Listen for changes on the radio buttons
+    const radios = document.querySelectorAll('input[name="toggle"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (document.getElementById('option1').checked || document.getElementById('option3').checked) {
+          console.log('YES or NO selected: continue button displayed');
+          continueBtn.style.display = "block";
+        } else {
+          console.log('Neutral selected: continue button hidden');
+          continueBtn.style.display = "none";
+        }
+      });
+    });
+    
+    // Add click event to the continue button
+    continueBtn.addEventListener('click', () => {
+      if (document.getElementById('option1').checked) {
+        console.log("Navigating to step4");
+        window.location.href = "https://concussed8.github.io/Oxygen_Modality/Pages/step4.html";
+      } else if (document.getElementById('option3').checked) {
+        console.log("Navigating to step3");
+        window.location.href = "https://concussed8.github.io/Oxygen_Modality/Pages/step3.html";
+      } else {
+        console.log("Neutral option selected: no navigation");
+      }
+    });
+  </script>
 </body>
 </html>
