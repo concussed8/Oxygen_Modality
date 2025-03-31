@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Construction Mode – Dual Control, Object Panels, Hide/Unhide, CSS & HTML</title>
+  <style>
+/* Reset default margin/padding, give a neutral background */
+    body {
+      margin: 0;
+      padding: 0;
+      /* Center the phone container horizontally */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0; /* Just a neutral background for contrast */
+    }
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6;
+    }
+    /* H1 styling with custom CSS controls (non-draggable) */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+      top: 1%;
+    }
+    /* Existing image styles (if needed) */
+    #movablehypercapnic {
+      position: absolute;
+      left: 5.23%;
+      transform: none;
+      top: 6.89%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: transparent;
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 1000;
+      width: 70%;
+      height: 11.99%;
+    }
+    /* Individual CSS for responding_expected.png */
+    #movablehypercapnic {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 11%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 70%;
+      height: 8%;
+    }
+    /* Individual CSS for hypercap_criteria.png */
+    #movablehypercap_criteria {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 60%;
+      height: 20%;
+    }
+    /* Individual CSS for initiate_bipap.png */
+    #movableinitiate_bipap {
+      position: absolute;
+       left: 50%;
+      transform: translateX(-50%);
+      top: 55%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 75%;
+      height: 36.08%;
+    }
+    /* Transparent Text Box CSS */
+    #remove_obstructions {
+      position: absolute;
+      left: 22.77%;
+      transform: none;
+      top: 85%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 47.45%;
+      height: 18%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    /* Individual CSS for hypercap_no_rr12.png */
+    #movablehypercap_no_rr12 {
+      position: absolute;
+      left: 3.80%;
+      transform: none;
+      top: 55%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 92.86%;
+      height: 36.08%;
+    }
+    @keyframes doublePulse {
+      0% { transform: scale(1); }
+      10% { transform: scale(1.1); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.1); }
+      40% { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+    /* Individual CSS for curve_yes.png */
+    #movablecurve_yes {
+      position: absolute;
+      left: 2%;
+      transform: none;
+      top: 28%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 13.63%;
+      height: 19.64%;
+      animation: doublePulse 2s infinite;
+    }
+    /* Individual CSS for curve_no.png */
+    #movablecurve_no {
+      position: absolute;
+      left: 84%;
+      transform: none;
+      top: 28%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 13.63%;
+      height: 19.64%;
+      animation: doublePulse 2s infinite;
+    }
+    /* CSS for the continue button */
+    #movablecontinue_button {
+      position: absolute;
+      left: 22.77%;
+      transform: none;
+      top: 85%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 47.45%;
+      height: 18%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #movablecontinue_button:hover {
+      transform: scale(1.25);
+    }
+    /* === Three-Way Toggle Styles === */
+    .toggle-container {
+      position: absolute;
+      width: 150px;
+      height: 50px;
+      left: 50%;
+      top: 45%;
+      transform: translateX(-50%) perspective(200px) rotateX(2deg);
+      background: linear-gradient(145deg, #444, #222);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    /* Hide radio buttons */
+    .toggle-container input[type="radio"] {
+      display: none;
+    }
+    /* The slider circle with increased size */
+    .toggle-slider {
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+      border-radius: 50%;
+      transform: translate(-10%, -50%);
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+    }
+    /* When option 1 is checked (left): center at 25px and yellow gradient */
+    #option1:checked ~ .toggle-slider {
+      left: 25px;
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+    }
+    /* When option 2 is checked (neutral): center at 75px and yellow gradient */
+    #option2:checked ~ .toggle-slider {
+      left: 50px;
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+    }
+    /* When option 3 is checked (right): center at 125px and red gradient */
+    #option3:checked ~ .toggle-slider {
+      left: 100px;
+      background: linear-gradient(145deg, #ff8a80, #ff5252);
+    }
+    /* Move slider based on which radio is checked */
+    #option1:checked ~ .toggle-slider {
+      left: 0;
+    }
+    #option2:checked ~ .toggle-slider {
+      left: 50px;
+    }
+    #option3:checked ~ .toggle-slider {
+      left: 100px;
+    }
+    /* Style the labels so they are clickable and on top of the slider */
+    .toggle-label {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      z-index: 1;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Smartphone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <!-- H1 element with custom styling (non-draggable) -->
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+    
+    <!-- Movable object: hypercapnic.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/hypercapnic.png" alt="hypercapnic" class="movable hideable" id="movablehypercapnic">
+    
+    <!-- Movable object: hypercap_criteria.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/hypercap_criteria.png" alt="hypercap_criteria" class="movable hideable" id="movablehypercap_criteria">
+    
+    <!-- Movable object: initiate_bipap.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/initiate_bipap.png" alt="initiate_bipap" class="movable hideable" id="movableinitiate_bipap">
+    
+    <!-- Movable object: hypercap_no_rr12.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/hypercap_no_rr12.png" alt="hypercap_no_rr12" class="movable hideable" id="movablehypercap_no_rr12">
+    
+    <!-- Movable object: curve_yes.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/curve_yes.png" alt="curve_yes" class="movable hideable" id="movablecurve_yes">
+    
+    <!-- Movable object: curve_no.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/curve_no.png" alt="curve_no" class="movable hideable" id="movablecurve_no">
+    
+    <!-- Movable object: continue_button.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
+    
+    <!-- Three-Way Toggle -->
+    <div class="toggle-container movable hideable">
+      <input type="radio" name="toggle" id="option1">
+      <input type="radio" name="toggle" id="option2" checked>
+      <input type="radio" name="toggle" id="option3">
+      <div class="toggle-slider"></div>
+      <label class="toggle-label" for="option1">YES</label>
+      <label class="toggle-label" for="option2">0</label>
+      <label class="toggle-label" for="option3">NO</label>
+    </div>
+  </div>
+  
+  <script>
+    // Get references to the images and continue button 
+    const initiateBipapImg = document.getElementById('movableinitiate_bipap');
+    const hypercapNoRR12Img = document.getElementById('movablehypercap_no_rr12');
+    const continueBtn = document.getElementById('movablecontinue_button');
+    
+    // Set initial state: neutral (hide both images and hide continue button)
+    initiateBipapImg.style.display = "none";
+    hypercapNoRR12Img.style.display = "none";
+    continueBtn.style.display = "none";
+    
+    // Listen for toggle changes and update images accordingly
+    const radios = document.querySelectorAll('input[name="toggle"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (document.getElementById('option1').checked) {
+          console.log('Option 1 selected: initiate_bipap.png displayed');
+          initiateBipapImg.style.display = "block";
+          hypercapNoRR12Img.style.display = "none";
+          continueBtn.style.display = "block";
+        } else if (document.getElementById('option3').checked) {
+          console.log('Option 3 selected: hypercap_no_rr12.png displayed');
+          initiateBipapImg.style.display = "none";
+          hypercapNoRR12Img.style.display = "block";
+          continueBtn.style.display = "block";
+        } else if (document.getElementById('option2').checked) {
+          console.log('Neutral selected: no images displayed');
+          initiateBipapImg.style.display = "none";
+          hypercapNoRR12Img.style.display = "none";
+          continueBtn.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
