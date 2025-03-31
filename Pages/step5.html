@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Construction Mode – Dual Control, Object Panels, Hide/Unhide, CSS & HTML</title>
+  <style>
+/* Reset default margin/padding, give a neutral background */
+    body {
+      margin: 0;
+      padding: 0;
+      /* Center the phone container horizontally */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0; /* Just a neutral background for contrast */
+    }
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6;
+    }
+    /* H1 styling with custom CSS controls (non-draggable) */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+      top: 1%;
+    }
+  /* Individual CSS for intiate_convention_oxygen.png */
+#movableintiate_convention_oxygen {
+  position: absolute;
+  left: 50%;
+  top: 9.12%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  font-family: Arial, sans-serif;
+  padding: 0;
+  border-radius: 0;
+  margin: 0;
+  white-space: normal;
+  z-index: 100;
+  width: 55.81%;
+  height: 27.40%;
+}
+
+    /* Individual CSS for low_flow_supp (if used) */
+    #movablelow_flow_supp {
+      position: absolute;
+      left: 5.58%;
+      transform: none;
+      top: 50%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 83.22%;
+      height: 50%;
+    }
+    /* Individual CSS for high_flow_supp (if used) */
+    #movablehigh_flow_supp {
+      position: absolute;
+      left: 8.03%;
+      transform: none;
+      top: 48%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 100;
+      width: 80%;
+      height: 55%;
+    }
+   
+     /* === Three-Way Toggle Styles === */
+.toggle-container {
+  position: absolute;
+  width: 150px;
+  height: 50px;
+  left: 50%;        /* Position left edge at 50% of the parent */
+  top: 40%;
+  transform: translateX(-50%) perspective(200px) rotateX(2deg);
+  background: linear-gradient(145deg, #444, #222);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+    /* Hide radio buttons */
+    .toggle-container input[type="radio"] {
+      display: none;
+    }
+/* The slider circle with increased size */
+.toggle-slider {
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(145deg, #FFFF00, #FFD700); /* default yellow gradient */
+  border-radius: 50%;
+  transform: translate(-10%, -50%); /* centers the circle relative to its left position */
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+}
+
+/* When option 1 is checked (left): center at 25px and green gradient */
+#option1:checked ~ .toggle-slider {
+  left: 25px;   
+  background: linear-gradient(145deg, #8ef08e, #4caf50);
+}
+
+/* When option 2 is checked (neutral): center at 75px and yellow gradient */
+#option2:checked ~ .toggle-slider {
+  left: 75px;   
+  background: linear-gradient(145deg, #FFFF00, #FFD700);
+}
+
+/* When option 3 is checked (right): center at 125px and red gradient */
+#option3:checked ~ .toggle-slider {
+  left: 125px;  
+  background: linear-gradient(145deg, #ff8a80, #ff5252);
+}
+
+
+
+
+    /* Move slider based on which radio is checked */
+    #option1:checked ~ .toggle-slider {
+      left: 0;
+    }
+    #option2:checked ~ .toggle-slider {
+      left: 50px;
+    }
+    #option3:checked ~ .toggle-slider {
+      left: 100px;
+    }
+    /* Style the labels so they are clickable and on top of the slider */
+    .toggle-label {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      z-index: 1;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+    }
+    /* CSS for the continue button */
+    #movablecontinue_button {
+      position: absolute;
+      left: 22.77%;
+      transform: none;
+      top: 83%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 100;
+      width: 47.45%;
+      height: 22.96%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+#movablecontinue_button:hover {
+  transform: scale(1.05);
+}
+/* Individual CSS for curve_yes.png */
+#movablecurve_yes {
+  position: absolute;
+  left: 5.29%;
+  transform: none;
+  top: 22.29%;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  font-family: Arial, sans-serif;
+  padding: 0px;
+  border-radius: 0px;
+  margin: 0px;
+  white-space: normal;
+  z-index: 100;
+  width: 13.63%;
+  height: 19.64%;
+  animation: doublePulse 2s infinite;
+}
+
+ @keyframes doublePulse {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.1);
+  }
+  20% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Individual CSS for curve_no.png */
+#movablecurve_no {
+  position: absolute;
+  left: 81%;
+  transform: none;
+  top: 22.15%;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  font-family: Arial, sans-serif;
+  padding: 0px;
+  border-radius: 0px;
+  margin: 0px;
+  white-space: normal;
+  z-index: 100;
+  width: 13.63%;
+  height: 19.64%;
+  animation: doublePulse 2s infinite;
+}
+  </style>
+</head>
+<body>
+  <!-- Smartphone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <!-- H1 element with custom styling (non-draggable) -->
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+ 
+    <!-- Object: intiate_convention_oxygen.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/intiate_convention_oxygen.png" alt="intiate_convention_oxygen" id="movableintiate_convention_oxygen">    
+
+ <!-- Object: curve_no.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/curve_no.png" alt="curve_no" id="movablecurve_no">
+
+    <!-- Object: curve_yes.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/curve_yes.png" alt="curve_yes" id="movablecurve_yes">
+    
+<!-- Object: high_flow_supp.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/high_flow_supp.png" alt="high_flow_supp" id="movablehigh_flow_supp">
+    
+    <!-- Object: low_flow_supp.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/low_flow_supp.png" alt="low_flow_supp" id="movablelow_flow_supp">
+
+    <!-- Object: continue_button.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
+    
+    
+
+    <!-- Three-Way Toggle (static) -->
+    <div class="toggle-container">
+      <!-- Left radio -->
+      <input type="radio" name="toggle" id="option1">
+      <!-- Middle (neutral) radio -->
+      <input type="radio" name="toggle" id="option2" checked>
+      <!-- Right radio -->
+      <input type="radio" name="toggle" id="option3">
+      <div class="toggle-slider"></div>
+      <label class="toggle-label" for="option1">&gt;85%</label>
+      <!-- Neutral label: clicking this does nothing -->
+      <label class="toggle-label" for="option2">SATS</label>
+      <label class="toggle-label" for="option3">&lt;85%</label>
+    </div>
+  </div>
+  
+  <script>
+    // Get references to the images and continue button
+    const lowFlowImg = document.getElementById('movablelow_flow_supp');
+    const highFlowImg = document.getElementById('movablehigh_flow_supp');
+    const continueBtn = document.getElementById('movablecontinue_button');
+    
+    // Set initial state: neutral (hide both images and hide continue button)
+    lowFlowImg.style.display = "none";
+    highFlowImg.style.display = "none";
+    continueBtn.style.display = "none";
+    
+    // Log current selection for left or right and update images accordingly
+    const radios = document.querySelectorAll('input[name="toggle"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if(document.getElementById('option1').checked){
+          console.log('Left selected');
+          lowFlowImg.style.display = "block";
+          highFlowImg.style.display = "none";
+          continueBtn.style.display = "block";
+        } else if(document.getElementById('option3').checked){
+          console.log('Right selected');
+          lowFlowImg.style.display = "none";
+          highFlowImg.style.display = "block";
+          continueBtn.style.display = "block";
+        } else if(document.getElementById('option2').checked){
+          console.log('Neutral selected');
+          lowFlowImg.style.display = "none";
+          highFlowImg.style.display = "none";
+          continueBtn.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
