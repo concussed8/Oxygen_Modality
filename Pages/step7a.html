@@ -239,7 +239,7 @@
     </div>
   </div>
   
-  <script>
+<script>
   // Get references to the images and continue button
   const yesImg = document.getElementById('movablebipap_effective_caution_warning');
   const noImg = document.getElementById('movablebipap_effective_caution_warning_severe');
@@ -254,15 +254,18 @@
   const radios = document.querySelectorAll('input[name="toggle"]');
   radios.forEach(radio => {
     radio.addEventListener('change', () => {
-      if (document.getElementById('option3').checked) {
-        console.log('Option 3 selected: responding_no image displayed');
-        // Only when the slider is to the right (option3) do we show the image and continue button
+      if (document.getElementById('option1').checked) {
+        console.log('Option 1 selected: bipap_effective_caution_warning image displayed, no continue button');
+        yesImg.style.display = "block";
+        noImg.style.display = "none";
+        continueBtn.style.display = "none";
+      } else if (document.getElementById('option3').checked) {
+        console.log('Option 3 selected: bipap_effective_caution_warning_severe image displayed with continue button');
         yesImg.style.display = "none";
         noImg.style.display = "block";
         continueBtn.style.display = "block";
-      } else {
-        console.log('Slider not in right position: continue button hidden');
-        // For any other slider position, hide both images and the continue button
+      } else if (document.getElementById('option2').checked) {
+        console.log('Neutral selected: no images displayed, continue button hidden');
         yesImg.style.display = "none";
         noImg.style.display = "none";
         continueBtn.style.display = "none";
@@ -270,13 +273,14 @@
     });
   });
   
-  // When the continue button is pressed, check if the slider is in the right position and redirect to step3a.html
+  // When the continue button is pressed, if the slider is in the right position, redirect to step3a.html
   continueBtn.addEventListener('click', () => {
     if (document.getElementById('option3').checked) {
       window.location.href = "step3a.html";
     }
   });
 </script>
+
 
 </body>
 </html>
