@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Phone Container Only</title>
+  <style>
+    /* Reset default margin/padding, give a neutral background */
+    body {
+      margin: 0;
+      padding: 0;
+      /* Center the phone container horizontally */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0; /* Just a neutral background for contrast */
+    }
+
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1; /* Royal Blue border */
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6; /* Light blue background */
+      margin: 20px;
+    }
+
+    /* H1 element inside the phone container */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 1%;
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1; /* Royal Blue */
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    /* Image: step2_question.png */
+    #movableRR_more_12_hyper_no {
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 9%;
+      width: 65%;
+      height: 30%;
+      z-index: 100;
+    }
+/* CSS for the continue button */
+    #movablecontinue_button {
+      position: absolute;
+      left: 22.77%;
+      transform: none;
+      top: 83%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      border-radius: 0px;
+      margin: 0px;
+      white-space: normal;
+      z-index: 1000;
+      width: 47.45%;
+      height: 22.96%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+#movablecontinue_button:hover {
+  transform: scale(1.25);
+}
+
+/* CSS for the monitor_closely.png */
+    #movablemonitor_closely {
+   position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 65%;
+      width: 75%;
+      height: 20%;
+      z-index: 100;
+    }
+
+
+/* CSS for the consider_airvo.png */
+    #movableconsider_airvo {
+   position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 56%;
+      width: 75%;
+      height: 35%;
+      z-index: 100;
+    }
+
+/* === Three-Way Toggle Styles === */
+.toggle-container {
+  position: absolute;
+  width: 150px;
+  height: 50px;
+  left: 50%;        /* Position left edge at 50% of the parent */
+  top: 47.5%;
+  transform: translateX(-50%) perspective(200px) rotateX(2deg);
+  background: linear-gradient(145deg, #444, #222);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+    /* Hide radio buttons */
+    .toggle-container input[type="radio"] {
+      display: none;
+    }
+/* The slider circle with increased size */
+.toggle-slider {
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(145deg, #FFFF00, #FFD700); /* default yellow gradient */
+  border-radius: 50%;
+  transform: translate(-10%, -50%); /* centers the circle relative to its left position */
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+}
+
+/* When option 1 is checked (left): center at 25px and green gradient */
+#option1:checked ~ .toggle-slider {
+  left: 25px;   
+  background: linear-gradient(145deg, #8ef08e, #4caf50);
+}
+
+/* When option 2 is checked (neutral): center at 75px and yellow gradient */
+#option2:checked ~ .toggle-slider {
+  left: 75px;   
+  background: linear-gradient(145deg, #FFFF00, #FFD700);
+}
+
+/* When option 3 is checked (right): center at 125px and red gradient */
+#option3:checked ~ .toggle-slider {
+  left: 125px;  
+  background: linear-gradient(145deg, #ff8a80, #ff5252);
+}
+
+
+
+
+    /* Move slider based on which radio is checked */
+    #option1:checked ~ .toggle-slider {
+      left: 0;
+    }
+    #option2:checked ~ .toggle-slider {
+      left: 50px;
+    }
+    #option3:checked ~ .toggle-slider {
+      left: 100px;
+    }
+    /* Style the labels so they are clickable and on top of the slider */
+    .toggle-label {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      z-index: 1;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+    }
+/* Individual CSS for RR_more_20_effective.png */
+#movableRR_more_20_effective {
+  position: absolute;
+  left: 30%;
+  transform: translateX(-50%);
+  transform: none;
+  top: 30%;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  font-family: Arial, sans-serif;
+  padding: 0px;
+  border-radius: 0px;
+  margin: 0px;
+  white-space: normal;
+  z-index: 1000;
+  width: 40%;
+  height: 18%;
+  animation: doublePulse 2s infinite;
+}
+
+ @keyframes doublePulse {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.1);
+  }
+  20% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+   
+  </style>
+</head>
+<body>
+  <!-- Phone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+    
+    <!-- RR_more_12_hyper_no.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/RR_more_12_hyper_no.png" alt="RR_more_12_hyper_no"
+      id="movableRR_more_12_hyper_no">
+
+<!-- Object: continue_button.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
+
+<!-- Object: RR_more_20_effective.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/RR_more_20_effective.png" alt="RR_more_20_effective" class="movable hideable" id="movableRR_more_20_effective">
+
+
+<!-- Object: monitor_closely.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/monitor_closely.png" alt="monitor_closely" class="movable hideable" id="movablemonitor_closely">
+
+<!-- Object: consider_airvo.png -->
+    <img src="https://concussed8.github.io/Oxygen_Modality/Images/consider_airvo.png" alt="consider_airvo" class="movable hideable" id="movableconsider_airvo">
+
+<!-- Three-Way Toggle (static) -->
+    <div class="toggle-container">
+      <!-- Left radio -->
+      <input type="radio" name="toggle" id="option1">
+      <!-- Middle (neutral) radio -->
+      <input type="radio" name="toggle" id="option2" checked>
+      <!-- Right radio -->
+      <input type="radio" name="toggle" id="option3">
+      <div class="toggle-slider"></div>
+      <label class="toggle-label" for="option1">YES</label>
+      <!-- Neutral label: clicking this does nothing -->
+      <label class="toggle-label" for="option2">0</label>
+      <label class="toggle-label" for="option3">NO</label>
+    </div>
+  </div>
+ <script>
+  // Get references to the images and continue button
+const monitorCloselyImg = document.getElementById('movablemonitor_closely');
+const considerAirvoImg = document.getElementById('movableconsider_airvo');
+const continueBtn = document.getElementById('movablecontinue_button');
+
+// Set initial state: hide both images and the continue button
+monitorCloselyImg.style.display = "none";
+considerAirvoImg.style.display = "none";
+continueBtn.style.display = "none";
+
+// Listen for toggle changes and update image visibility accordingly
+const radios = document.querySelectorAll('input[name="toggle"]');
+radios.forEach(radio => {
+  radio.addEventListener('change', () => {
+    if (document.getElementById('option1').checked) {
+      console.log('Left selected: monitor_closely.png displayed');
+      monitorCloselyImg.style.display = "block";
+      considerAirvoImg.style.display = "none";
+      continueBtn.style.display = "block";
+    } else if (document.getElementById('option2').checked) {
+      console.log('Neutral selected: nothing displayed');
+      monitorCloselyImg.style.display = "none";
+      considerAirvoImg.style.display = "none";
+      continueBtn.style.display = "none";
+    } else if (document.getElementById('option3').checked) {
+      console.log('Right selected: consider_airvo.png displayed');
+      monitorCloselyImg.style.display = "none";
+      considerAirvoImg.style.display = "block";
+      continueBtn.style.display = "block";
+    }
+  });
+});
+
+
+    </script>
+
+</body>
+</html>
