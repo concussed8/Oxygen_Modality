@@ -340,18 +340,18 @@
     </div>
   </div>
   
-  <script>
+ <script>
   // Get references to the images and continue button 
   const initiateBipapImg = document.getElementById('movableinitiate_bipap');
   const hypercapNoRR12Img = document.getElementById('movablehypercap_no_rr12');
   const continueBtn = document.getElementById('movablecontinue_button');
   
-  // Set initial state: neutral (hide both images and hide continue button)
+  // Set initial state: hide both images and the continue button
   initiateBipapImg.style.display = "none";
   hypercapNoRR12Img.style.display = "none";
   continueBtn.style.display = "none";
   
-  // Listen for toggle changes and update images accordingly
+  // Listen for toggle changes and update images and button visibility accordingly
   const radios = document.querySelectorAll('input[name="toggle"]');
   radios.forEach(radio => {
     radio.addEventListener('change', () => {
@@ -361,9 +361,10 @@
         hypercapNoRR12Img.style.display = "none";
         continueBtn.style.display = "block";
       } else if (document.getElementById('option3').checked) {
-        console.log('Option 3 selected: hypercap_no_rr12.png displayed');
+        console.log('Option 3 selected: no image displayed (right position)');
+        // Do not display the associated image when the slider is on the right
         initiateBipapImg.style.display = "none";
-        hypercapNoRR12Img.style.display = "block";
+        hypercapNoRR12Img.style.display = "none";
         continueBtn.style.display = "block";
       } else if (document.getElementById('option2').checked) {
         console.log('Neutral selected: no images displayed');
@@ -374,17 +375,18 @@
     });
   });
   
-  // When the continue button is pressed, check which slider option is selected and redirect accordingly
+  // When the continue button is pressed, redirect based on the slider's position
   continueBtn.addEventListener('click', () => {
     if (document.getElementById('option3').checked) {
-      // Slider is to the right -> redirect to step3a.html
-      window.location.href = "step3a.html";
+      // Slider is to the right -> redirect to step2.html
+      window.location.href = "step2.html";
     } else if (document.getElementById('option1').checked) {
       // Slider is to the left -> redirect to step7.html
       window.location.href = "step7.html";
     }
   });
 </script>
+
 
 </body>
 </html>
