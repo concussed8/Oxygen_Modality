@@ -264,40 +264,47 @@
   </div>
  <script>
   // Get references to the images and continue button
-const monitorCloselyImg = document.getElementById('movablemonitor_closely');
-const considerAirvoImg = document.getElementById('movableconsider_airvo');
-const continueBtn = document.getElementById('movablecontinue_button');
+  const monitorCloselyImg = document.getElementById('movablemonitor_closely');
+  const considerAirvoImg = document.getElementById('movableconsider_airvo');
+  const continueBtn = document.getElementById('movablecontinue_button');
 
-// Set initial state: hide both images and the continue button
-monitorCloselyImg.style.display = "none";
-considerAirvoImg.style.display = "none";
-continueBtn.style.display = "none";
+  // Set initial state: hide both images and the continue button
+  monitorCloselyImg.style.display = "none";
+  considerAirvoImg.style.display = "none";
+  continueBtn.style.display = "none";
 
-// Listen for toggle changes and update image visibility accordingly
-const radios = document.querySelectorAll('input[name="toggle"]');
-radios.forEach(radio => {
-  radio.addEventListener('change', () => {
-    if (document.getElementById('option1').checked) {
-      console.log('Left selected: monitor_closely.png displayed');
-      monitorCloselyImg.style.display = "block";
-      considerAirvoImg.style.display = "none";
-      continueBtn.style.display = "block";
-    } else if (document.getElementById('option2').checked) {
-      console.log('Neutral selected: nothing displayed');
-      monitorCloselyImg.style.display = "none";
-      considerAirvoImg.style.display = "none";
-      continueBtn.style.display = "none";
-    } else if (document.getElementById('option3').checked) {
-      console.log('Right selected: consider_airvo.png displayed');
-      monitorCloselyImg.style.display = "none";
-      considerAirvoImg.style.display = "block";
-      continueBtn.style.display = "block";
+  // Listen for toggle changes and update image visibility accordingly
+  const radios = document.querySelectorAll('input[name="toggle"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (document.getElementById('option1').checked) {
+        console.log('Left selected: monitor_closely.png displayed');
+        monitorCloselyImg.style.display = "block";
+        considerAirvoImg.style.display = "none";
+        continueBtn.style.display = "block";
+      } else if (document.getElementById('option2').checked) {
+        console.log('Neutral selected: nothing displayed');
+        monitorCloselyImg.style.display = "none";
+        considerAirvoImg.style.display = "none";
+        continueBtn.style.display = "none";
+      } else if (document.getElementById('option3').checked) {
+        console.log('Right selected: consider_airvo.png displayed');
+        // Do not display the image when slider is on the right, but show the continue button
+        monitorCloselyImg.style.display = "none";
+        considerAirvoImg.style.display = "none";
+        continueBtn.style.display = "block";
+      }
+    });
+  });
+
+  // When the continue button is clicked, if the slider is in the right position (option3), redirect to step5a.html
+  continueBtn.addEventListener('click', () => {
+    if (document.getElementById('option3').checked) {
+      window.location.href = "step5a.html";
     }
   });
-});
+</script>
 
-
-    </script>
 
 </body>
 </html>
