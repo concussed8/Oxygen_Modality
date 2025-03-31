@@ -294,52 +294,60 @@
     </div>
   </div>
   
-  <script>
-    // Get references to the images and continue button
-    const respondingYesImg = document.getElementById('movableresponding_yes');
-    const respondingNoImg = document.getElementById('movableresponding_no');
-    const continueBtn = document.getElementById('movablecontinue_button');
-    
-    // Set initial state: neutral (hide both images and hide continue button)
-    if (respondingYesImg && respondingNoImg && continueBtn) {
-      respondingYesImg.style.display = "none";
-      respondingNoImg.style.display = "none";
-      continueBtn.style.display = "none";
-    }
-    
-    // Listen for toggle changes and update images accordingly
-    const radios = document.querySelectorAll('input[name="toggle"]');
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (document.getElementById('option1').checked) {
-          console.log('Option 1 selected: responding_yes.png displayed');
-          respondingYesImg.style.display = "block";
-          respondingNoImg.style.display = "none";
-          continueBtn.style.display = "block";
-        } else if (document.getElementById('option3').checked) {
-          console.log('Option 3 selected: responding_no.png displayed');
-          respondingYesImg.style.display = "none";
-          respondingNoImg.style.display = "block";
-          continueBtn.style.display = "block";
-        } else if (document.getElementById('option2').checked) {
-          console.log('Neutral selected: no images displayed');
-          respondingYesImg.style.display = "none";
-          respondingNoImg.style.display = "none";
-          continueBtn.style.display = "none";
-        }
-      });
+ <script>
+  // Get references to the images and continue button
+  const respondingYesImg = document.getElementById('movableresponding_yes');
+  const respondingNoImg = document.getElementById('movableresponding_no');
+  const continueBtn = document.getElementById('movablecontinue_button');
+  
+  // Set initial state: neutral (hide both images and hide continue button)
+  if (respondingYesImg && respondingNoImg && continueBtn) {
+    respondingYesImg.style.display = "none";
+    respondingNoImg.style.display = "none";
+    continueBtn.style.display = "none";
+  }
+  
+  // Listen for toggle changes and update images accordingly
+  const radios = document.querySelectorAll('input[name="toggle"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (document.getElementById('option1').checked) {
+        console.log('Option 1 selected: responding_yes.png displayed');
+        respondingYesImg.style.display = "block";
+        respondingNoImg.style.display = "none";
+        continueBtn.style.display = "block";
+      } else if (document.getElementById('option3').checked) {
+        console.log('Option 3 selected: responding_no.png displayed');
+        respondingYesImg.style.display = "none";
+        respondingNoImg.style.display = "block";
+        continueBtn.style.display = "block";
+      } else if (document.getElementById('option2').checked) {
+        console.log('Neutral selected: no images displayed');
+        respondingYesImg.style.display = "none";
+        respondingNoImg.style.display = "none";
+        continueBtn.style.display = "none";
+      }
     });
-    
-    // Swapped functionality: Open the respective PDF when an image is clicked.
-    // Clicking pdf.png now opens BiPAP Tips and Tricks.pdf
-    document.getElementById('movablepdf').addEventListener('click', function() {
-      window.open('https://concussed8.github.io/Oxygen_Modality/Files/BiPAP%20Tips%20and%20Tricks.pdf', '_blank');
+  });
+  
+  // When the continue image icon is pressed, redirect to step7a.html
+  if (continueBtn) {
+    continueBtn.addEventListener('click', function() {
+      window.location.href = "step7a.html";
     });
-    
-    // Clicking pdf2.png now opens BiPAP Initiation Guidelines.pdf
-    document.getElementById('movablepdf2').addEventListener('click', function() {
-      window.open('https://concussed8.github.io/Oxygen_Modality/Files/BiPAP%20Initiation%20Guidelines.pdf', '_blank');
-    });
-  </script>
+  }
+  
+  // Swapped functionality: Open the respective PDF when an image is clicked.
+  // Clicking pdf.png now opens BiPAP Tips and Tricks.pdf
+  document.getElementById('movablepdf').addEventListener('click', function() {
+    window.open('https://concussed8.github.io/Oxygen_Modality/Files/BiPAP%20Tips%20and%20Tricks.pdf', '_blank');
+  });
+  
+  // Clicking pdf2.png now opens BiPAP Initiation Guidelines.pdf
+  document.getElementById('movablepdf2').addEventListener('click', function() {
+    window.open('https://concussed8.github.io/Oxygen_Modality/Files/BiPAP%20Initiation%20Guidelines.pdf', '_blank');
+  });
+</script>
+
 </body>
 </html>
