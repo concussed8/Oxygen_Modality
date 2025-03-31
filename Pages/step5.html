@@ -303,38 +303,44 @@
   </div>
   
   <script>
-    // Get references to the images and continue button
-    const lowFlowImg = document.getElementById('movablelow_flow_supp');
-    const highFlowImg = document.getElementById('movablehigh_flow_supp');
-    const continueBtn = document.getElementById('movablecontinue_button');
-    
-    // Set initial state: neutral (hide both images and hide continue button)
-    lowFlowImg.style.display = "none";
-    highFlowImg.style.display = "none";
-    continueBtn.style.display = "none";
-    
-    // Log current selection for left or right and update images accordingly
-    const radios = document.querySelectorAll('input[name="toggle"]');
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if(document.getElementById('option1').checked){
-          console.log('Left selected');
-          lowFlowImg.style.display = "block";
-          highFlowImg.style.display = "none";
-          continueBtn.style.display = "block";
-        } else if(document.getElementById('option3').checked){
-          console.log('Right selected');
-          lowFlowImg.style.display = "none";
-          highFlowImg.style.display = "block";
-          continueBtn.style.display = "block";
-        } else if(document.getElementById('option2').checked){
-          console.log('Neutral selected');
-          lowFlowImg.style.display = "none";
-          highFlowImg.style.display = "none";
-          continueBtn.style.display = "none";
-        }
-      });
+  // Get references to the images and continue button
+  const lowFlowImg = document.getElementById('movablelow_flow_supp');
+  const highFlowImg = document.getElementById('movablehigh_flow_supp');
+  const continueBtn = document.getElementById('movablecontinue_button');
+  
+  // Set initial state: neutral (hide both images and hide continue button)
+  lowFlowImg.style.display = "none";
+  highFlowImg.style.display = "none";
+  continueBtn.style.display = "none";
+  
+  // Log current selection for left or right and update images accordingly
+  const radios = document.querySelectorAll('input[name="toggle"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (document.getElementById('option1').checked) {
+        console.log('Left selected');
+        lowFlowImg.style.display = "block";
+        highFlowImg.style.display = "none";
+        continueBtn.style.display = "block";
+      } else if (document.getElementById('option3').checked) {
+        console.log('Right selected');
+        lowFlowImg.style.display = "none";
+        highFlowImg.style.display = "block";
+        continueBtn.style.display = "block";
+      } else if (document.getElementById('option2').checked) {
+        console.log('Neutral selected');
+        lowFlowImg.style.display = "none";
+        highFlowImg.style.display = "none";
+        continueBtn.style.display = "none";
+      }
     });
-  </script>
+  });
+  
+  // When the continue button is pressed, redirect to step6.html
+  continueBtn.addEventListener('click', () => {
+    window.location.href = "step6.html";
+  });
+</script>
+
 </body>
 </html>
