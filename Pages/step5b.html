@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Phone Container Only</title>
+  <style>
+    /* Reset default margin/padding, give a neutral background */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0;
+    }
+
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6;
+      margin: 20px;
+    }
+
+    /* H1 element inside the phone container */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 1%;
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    /* Style for the home image using percentage values */
+    #homeImage {
+      position: absolute;
+      top: 88%;      /* Adjust as needed */
+      left: 80%;     /* Adjust as needed */
+      width: 20%;   /* Adjust width */
+      height: 13%;  /* Adjust height */
+    }
+
+    /* CSS for the youtube.png */
+    #youtube1 {
+      position: absolute;
+      left: 41%;
+      top: 25%;
+      width: 18%;
+      height: 10%;
+      z-index: 100;
+      transition: transform 0.2s ease;
+    }
+    #youtube1:hover {
+      transform: scale(1.35);
+    }
+
+    /* CSS for the youtube2.png */
+    #youtube2 {
+      position: absolute;
+      left: 41%;
+      top: 40%;
+      width: 18%;
+      height: 10%;
+      z-index: 100;
+      transition: transform 0.2s ease;
+    }
+    #youtube2:hover {
+      transform: scale(1.35);
+    }
+
+    /* CSS for the youtube3.png */
+    #youtube3 {
+      position: absolute;
+      left: 41%;
+      top: 55%;
+      width: 18%;
+      height: 10%;
+      z-index: 100;
+      transition: transform 0.2s ease;
+    }
+    #youtube3:hover {
+      transform: scale(1.35);
+    }
+
+    /* CSS for the pdf.png */
+    #pdf {
+      position: absolute;
+      left: 37%;
+      top: 70%;
+      width: 27%;
+      height: 13%;
+      z-index: 100;
+      transition: transform 0.2s ease;
+    }
+    #pdf:hover {
+      transform: scale(1.35);
+    }
+
+    /* CSS for the return.png */
+    #return {
+      position: absolute;
+      left: 25%;
+      top: 78%;
+      font-size: 16px;
+      color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+      white-space: normal;
+      z-index: 1000;
+      width: 50%;
+      height: 22.96%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #return:hover {
+      transform: scale(1.05);
+    }
+
+    /* Airvo title */
+    .airvo-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 12%;
+      font-size: 22px;
+      color: #ffffff;
+      background-color: red;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    /* HFNC */
+    .HFNC-controls {
+      position: absolute;
+      left: 0%;
+      top: 20%;
+      font-size: 18px;
+      color: #ffffff;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    /* HFNCsetup */
+    .HFNCsetup-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 34%;
+      font-size: 18px;
+      color: #ffffff;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    /* HFNCinterface */
+    .HFNCinterface-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 48%;
+      font-size: 18px;
+      color: #ffffff;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    /* HFNCsetuppdf */
+    .HFNCsetuppdf-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 63%;
+      font-size: 18px;
+      color: #ffffff;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Phone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+    <h1 class="airvo-controls" id="airvoElement">Airvo Resources</h1>
+    <h1 class="HFNC-controls" id="HFNCElement">How does NHF (Nasal High Flow) work?</h1>
+    <h1 class="HFNCsetup-controls" id="HFNCsetupElement">Setting up the Airvo</h1>
+    <h1 class="HFNCinterface-controls" id="HFNCinterfaceElement">Selecting the right interfaceo</h1>
+    <h1 class="HFNCsetuppdf-controls" id="HFNCsetuppdfElement">Airvo2 Setup Instructions</h1>
+
+    <!-- Object: youtube1.png -->
+    <a href="https://www.youtube.com/watch?v=kQjCpeOnn1M&list=PLonAnS_1BEgqs726WdOK6w5bFHql9OBvN&index=12" target="_blank">
+      <img src="https://concussed8.github.io/Oxygen_Modality/Images/youtube1.png" alt="youtube1" id="youtube1">
+    </a>
+
+    <!-- Object: youtube2.png -->
+    <a href="https://www.youtube.com/watch?v=f_OkSQshJQU&list=PLonAnS_1BEgouRBzbHb-EIt6Puu8P6YIn&index=3" target="_blank">
+      <img src="https://concussed8.github.io/Oxygen_Modality/Images/youtube2.png" alt="youtube2" id="youtube2">
+    </a>
+
+    <!-- Object: youtube3.png -->
+    <a href="https://www.youtube.com/watch?v=BbeIhqREtmo&list=PLonAnS_1BEgouRBzbHb-EIt6Puu8P6YIn&index=11" target="_blank">
+      <img src="https://concussed8.github.io/Oxygen_Modality/Images/youtube3.png" alt="youtube3" id="youtube3">
+    </a>
+
+    <!-- Object: pdf.png -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/Files/Airvo2 setup.pdf" target="_blank">
+      <img src="https://concussed8.github.io/Oxygen_Modality/Images/pdf.png" alt="pdf" id="pdf">
+    </a>
+
+    <!-- Object: return.png -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/Pages/step5a.html" target="_self">
+      <img src="https://concussed8.github.io/Oxygen_Modality/Images/return.png" alt="return" id="return">
+    </a>
+
+
+    <!-- Home button redirect -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/">
+      <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+    </a>
+  </div>
+
+  <script>
+    
+  </script>
+</body>
+</html>
