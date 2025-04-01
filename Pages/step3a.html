@@ -43,6 +43,15 @@
       white-space: nowrap;
       z-index: 1000;
     }
+/* Style for the home image using percentage values */
+    #homeImage {
+      position: absolute;
+      top: 88%;      /* Adjust as needed */
+      left: 80%;     /* Adjust as needed */
+      width: 20%;   /* Adjust width */
+      height: 13%;  /* Adjust height */
+    }
+
     /* Base style for movable objects */
     .movable {
       position: absolute;
@@ -61,22 +70,7 @@
   transform: translateX(-50%);
 }
 
-    /* Individual CSS for yes.png */
-    #movableyes {
-      left: 70%;
-      top: 79.81%;
-      width: 23.32%;
-      height: 14.16%;
-      transform: none;
-    }
-    /* Individual CSS for no.png */
-    #movableno {
-      left: 5.5%;
-      top: 79.81%;
-      width: 23.32%;
-      height: 14.16%;
-      transform: none;
-    }
+   
     /* Individual CSS for pdf.png */
     #movablepdf {
       left: -5.21%;
@@ -104,14 +98,18 @@
     <!-- H1 element -->
     <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
 
+  <!--home button redirect-->
+<img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+
+<!-- Home button redirect -->
+<a href="https://concussed8.github.io/Oxygen_Modality/">
+  <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+</a>
+
     <!-- Movable object: STOP_intubate.png -->
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/STOP_intubate.png" alt="STOP_intubate" class="movable hideable" id="movableSTOP_intubate">
 
-    <!-- Movable object: yes.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/yes.png" alt="yes" class="movable hideable" id="movableyes">
-
-    <!-- Movable object: no.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/no.png" alt="no" class="movable hideable" id="movableno">
+    
 
     <!-- Movable object: pdf.png (click to download PDF) -->
     <a href="https://concussed8.github.io/Oxygen_Modality/Files/Intubation_Checklist.pdf" download>

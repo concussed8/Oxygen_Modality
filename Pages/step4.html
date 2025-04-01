@@ -45,6 +45,15 @@
       z-index: 1000;
     }
     
+/* Style for the home image using percentage values */
+    #homeImage {
+      position: absolute;
+      top: 88%;      /* Adjust as needed */
+      left: 80%;     /* Adjust as needed */
+      width: 20%;   /* Adjust width */
+      height: 13%;  /* Adjust height */
+      z-index: 1000;
+    }
 
     /* --- New Containers Module inside Phone Container --- */
     /* Draggable container common styles */
@@ -227,7 +236,15 @@
   <div class="phone-container" id="phoneContainer">
     <!-- Header -->
     <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
-    
+
+      <!--home button redirect-->
+<img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+
+<!-- Home button redirect -->
+<a href="https://concussed8.github.io/Oxygen_Modality/">
+  <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+</a>
+
     <!-- New Draggable Containers Module -->
     <!-- Container 1 with 3 radio buttons -->
     <div class="draggable-container container1" id="container1">
