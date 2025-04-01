@@ -232,7 +232,30 @@
     transform: scale(1);
   }
 }
-   
+  /* CSS for the add_airvo_resource.png */
+    #add_airvo_resource {
+      position: absolute;
+      left: 10%;
+      top: 60%;
+      width: 65%;
+      height: 30%;
+      z-index: 100;
+      transition: transform 0.2s ease;
+    }
+ /* CSS for the pdf_yt.png*/
+    #pdf_yt {
+      position: absolute;
+      left: 65%;
+      top: 63%;
+      width: 25%;
+      height: 20%;
+      z-index: 100;
+      transition: transform 0.2s ease;
+    }
+#pdf_yt:hover {
+  transform: scale(1.25);
+}
+}
   </style>
 </head>
 <body>
@@ -252,8 +275,10 @@
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/airvo_effectiveness.png" alt="airvo_effectiveness"
       id="movableairvo_effectiveness">
 
-<!-- Object: continue_button.png -->
-    <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
+<a href="https://concussed8.github.io/Oxygen_Modality/Pages/step3a.html" target="_self">
+  <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" alt="continue_button" class="movable hideable" id="movablecontinue_button">
+</a>
+
 
 <!-- Object: effective2.png -->
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/effective2.png" alt="effective2" class="movable hideable" id="movableeffective2">
@@ -264,6 +289,16 @@
 
 <!-- Object: consider_ventilation.png -->
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/consider_ventilation.png" alt="consider_ventilation" class="movable hideable" id="movableconsider_ventilation">
+
+<img src="https://concussed8.github.io/Oxygen_Modality/Images/add_airvo_resource.png" alt="Add Airvo Resource" id="add_airvo_resource">
+
+<a href="https://concussed8.github.io/Oxygen_Modality/Pages/step5b.html" target="_self">
+  <img src="https://concussed8.github.io/Oxygen_Modality/Images/pdf_yt.png" alt="pdf_yt" id="pdf_yt">
+</a>
+
+
+
+
 
 <!-- Three-Way Toggle (static) -->
     <div class="toggle-container">
@@ -281,40 +316,59 @@
     </div>
   </div>
 <script>
-// Get references to the images and continue button
-const weanAsNeededImg = document.getElementById('movablewean_as_needed');
-const considerVentilationImg = document.getElementById('movableconsider_ventilation');
-const continueBtn = document.getElementById('movablecontinue_button');
+  // Get references to the images and continue button
+  const weanAsNeededImg = document.getElementById('movablewean_as_needed');
+  const considerVentilationImg = document.getElementById('movableconsider_ventilation');
+  const continueBtn = document.getElementById('movablecontinue_button');
 
-// Set initial state: hide both images and the continue button
-weanAsNeededImg.style.display = "none";
-considerVentilationImg.style.display = "none";
-continueBtn.style.display = "none";
+  // Get references to the additional images
+  const addAirvoResourceImg = document.getElementById('add_airvo_resource');
+  const pdfYtImg = document.getElementById('pdf_yt');
 
-// Listen for toggle changes and update image visibility accordingly
-const radios = document.querySelectorAll('input[name="toggle"]');
-radios.forEach(radio => {
-  radio.addEventListener('change', () => {
+  // Set initial state: hide all images and the continue button
+  weanAsNeededImg.style.display = "none";
+  considerVentilationImg.style.display = "none";
+  continueBtn.style.display = "none";
+  addAirvoResourceImg.style.display = "none";
+  pdfYtImg.style.display = "none";
+
+  // Function to update image visibility based on the slider selection
+  function updateDisplay() {
     if (document.getElementById('option1').checked) {
       console.log('Left selected: wean_as_needed.png displayed');
       weanAsNeededImg.style.display = "block";
       considerVentilationImg.style.display = "none";
       continueBtn.style.display = "block";
+      addAirvoResourceImg.style.display = "none";
+      pdfYtImg.style.display = "none";
     } else if (document.getElementById('option3').checked) {
       console.log('Right selected: consider_ventilation.png displayed');
       weanAsNeededImg.style.display = "none";
       considerVentilationImg.style.display = "block";
       continueBtn.style.display = "block";
+      addAirvoResourceImg.style.display = "none";
+      pdfYtImg.style.display = "none";
     } else if (document.getElementById('option2').checked) {
-      console.log('Neutral selected: no image displayed');
+      console.log('Neutral selected: add_airvo_resource and pdf_yt displayed');
       weanAsNeededImg.style.display = "none";
       considerVentilationImg.style.display = "none";
       continueBtn.style.display = "none";
+      addAirvoResourceImg.style.display = "block";
+      pdfYtImg.style.display = "block";
     }
-  });
-});
+  }
 
+  // Listen for toggle changes and update display accordingly
+  const radios = document.querySelectorAll('input[name="toggle"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', updateDisplay);
+  });
+
+  // Update display on initial page load based on the default (middle) selection
+  updateDisplay();
 </script>
+
+
 
 </body>
 </html>
