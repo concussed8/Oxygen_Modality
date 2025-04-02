@@ -254,37 +254,38 @@
 
   <!-- JavaScript to toggle the visibility of the continue button and navigate if left is selected -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const continueButton = document.getElementById("movablecontinue_button");
-      const option1 = document.getElementById("option1");
-      const option2 = document.getElementById("option2");
-      const option3 = document.getElementById("option3");
+  document.addEventListener("DOMContentLoaded", function() {
+    const continueButton = document.getElementById("movablecontinue_button");
+    const option1 = document.getElementById("option1");
+    const option2 = document.getElementById("option2");
+    const option3 = document.getElementById("option3");
 
-      function updateContinueButtonVisibility() {
-        // Show the continue button only if option1 or option3 is checked (slider moved)
-        if (option1.checked || option3.checked) {
-          continueButton.style.display = "block";
-        } else {
-          continueButton.style.display = "none";
-        }
+    function updateContinueButtonVisibility() {
+      // Show the continue button only if option1 or option3 is checked (slider moved)
+      if (option1.checked || option3.checked) {
+        continueButton.style.display = "block";
+      } else {
+        continueButton.style.display = "none";
       }
+    }
 
-      // Listen for changes on the radio inputs
-      option1.addEventListener("change", updateContinueButtonVisibility);
-      option2.addEventListener("change", updateContinueButtonVisibility);
-      option3.addEventListener("change", updateContinueButtonVisibility);
+    // Listen for changes on the radio inputs
+    option1.addEventListener("change", updateContinueButtonVisibility);
+    option2.addEventListener("change", updateContinueButtonVisibility);
+    option3.addEventListener("change", updateContinueButtonVisibility);
 
-      // Initialize visibility on page load
-      updateContinueButtonVisibility();
+    // Initialize visibility on page load
+    updateContinueButtonVisibility();
 
-      // When the continue button is clicked, check if the slider is on the left (option1)
-      continueButton.addEventListener("click", function() {
-        if (option1.checked) {
-          // Navigate to the step2 file from your GitHub Pages directory
-          window.location.href = "https://concussed8.github.io/Oxygen_Modality/Pages/step2.html";
-        }
-      });
+    // When the continue button is clicked, check if the slider is on the right (option3)
+    continueButton.addEventListener("click", function() {
+      if (option3.checked) {
+        // Navigate to the ste1a file from your GitHub Pages directory
+        window.location.href = "https://concussed8.github.io/Oxygen_Modality/Pages/ste1a.html";
+      }
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
