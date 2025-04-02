@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Phone Container Only</title>
+  <style>
+    /* Base layout */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0;
+    }
+    /* Phone container styling */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ADD8E6;
+      margin: 20px;
+    }
+    /* Header styling */
+    .h1-controls {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 1%;
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+    /* Home image styling */
+    #homeImage {
+      position: absolute;
+      top: 88%;      /* Adjust as needed */
+      left: 80%;     /* Adjust as needed */
+      width: 20%;    /* Adjust width */
+      height: 13%;   /* Adjust height */
+      z-index: 1000;
+      cursor: pointer;
+    }
+    /* No O2 image styling: centered horizontally and vertically */
+    #noO2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* Sizing control: adjust width/height as needed */
+      width: 80%;  /* Change this percentage to resize the image */
+      height: auto;
+      z-index: 500;
+    }
+  </style>
+</head>
+<body>
+  <!-- Phone Container -->
+  <div class="phone-container" id="phoneContainer">
+    <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
+    
+    <!-- Home image wrapped in an anchor for redirection to index.html -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/index.html">
+      <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+    </a>
+    
+    <!-- No O2 image, centered in the container -->
+    <img id="noO2" src="https://concussed8.github.io/Oxygen_Modality/Images/no_o2.png" alt="No O2">
+  </div>
+  
+  <script>
+    // Header interaction: logs a message when clicked.
+    document.getElementById("h1Element").addEventListener("click", function() {
+      console.log("Header clicked!");
+      // Additional header functionality can be added here.
+    });
+    
+    // Phone container interaction: logs a message when clicked.
+    document.getElementById("phoneContainer").addEventListener("click", function() {
+      console.log("Phone container clicked!");
+      // Additional container functionality can be added here.
+    });
+    
+    // Home image function: logs a message and stops event propagation.
+    document.getElementById("homeImage").addEventListener("click", function(event) {
+      console.log("Home image clicked! Redirecting to index.html.");
+      event.stopPropagation();
+      // Redirection is handled by the anchor tag.
+    });
+  </script>
+</body>
+</html>
