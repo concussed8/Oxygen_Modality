@@ -163,7 +163,7 @@
       transform: translate(-50%, -50%) scale(1.5) !important;
       z-index: 999 !important;
     }
-    /* Popup container styling */
+    /* Popup container styling for existing popup */
     .popup-container {
       position: absolute;
       top: 0;
@@ -179,7 +179,6 @@
       padding: 20px;
       box-sizing: border-box;
     }
-    /* Popup text styling */
     .popup-text {
       font-family: Arial, sans-serif;
       font-size: 26px;
@@ -238,11 +237,42 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
       font-weight: bold;
     }
-    /* Popup continue button styling */
+    /* Popup continue button styling for existing popup */
     #continue_button_popup {
       position: relative;
       width: 80%;
       max-width: 300px;
+      cursor: pointer;
+    }
+    /* --- Startup Popup Styles --- */
+    /* This popup initializes at page load */
+    .popup-container-startup {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2500;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    /* Styling for the click_video image inside startup popup */
+    #click_video {
+      width: 80%;
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    /* Styling for the startup popup continue button */
+    #continue_button_popup_startup {
+      width: 65%;
+      max-width: 200px;
+      height: auto;
       cursor: pointer;
     }
   </style>
@@ -297,11 +327,11 @@
       </video>
     </div>
     
-    <!-- Continue button (outside popup) that triggers the popup -->
+    <!-- Continue button (outside popup) that triggers the existing popup -->
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" 
          alt="continue_button" class="movable hideable" id="movablecontinue_button">
     
-    <!-- Popup Container -->
+    <!-- Existing Popup Container -->
     <div class="popup-container" id="popupContainer">
       <!-- Popup Text -->
       <div class="popup-text">Was clearing the airway effective in maintainig patentcy?</div>
@@ -317,6 +347,16 @@
       </div>
       <!-- Popup Continue Button (hidden until a non-neutral option is selected) -->
       <img id="continue_button_popup" src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button_popup.png" alt="continue_button_popup">
+    </div>
+    
+    <!-- Startup Popup Container (initializes on page load) -->
+    <div class="popup-container-startup" id="popupContainerStartup">
+      <!-- Added H1 header from phone container -->
+      <h1 class="h1-controls" id="popupH1Element">Oxygen Modality Decision Making</h1>
+      <!-- Click Video Image -->
+      <img id="click_video" src="https://concussed8.github.io/Oxygen_Modality/Images/click_video.png" alt="Click Video">
+      <!-- Startup Popup Continue Button -->
+      <img id="continue_button_popup_startup" src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button_popup_startup.png" alt="continue_button_popup_startup">
     </div>
   </div>
   
@@ -334,18 +374,18 @@
       });
     });
     
-    // Show the popup when the original continue button is clicked.
+    // Show the existing popup when the external continue button is clicked.
     const continueBtn = document.getElementById("movablecontinue_button");
     const popupContainer = document.getElementById("popupContainer");
     continueBtn.addEventListener('click', function() {
       popupContainer.style.display = "flex";
     });
     
-    // Hide the popup continue button initially.
+    // Hide the existing popup continue button initially.
     const continuePopupBtn = document.getElementById("continue_button_popup");
     continuePopupBtn.style.display = "none";
     
-    // Add event listeners for slider radio buttons to show the popup continue button when either YES or NO is selected.
+    // Show the existing popup continue button when slider is set to YES or NO.
     const radios = document.querySelectorAll('.toggle-container input[type="radio"]');
     radios.forEach(radio => {
       radio.addEventListener('change', function() {
@@ -357,13 +397,20 @@
       });
     });
     
-    // Handle the popup continue button click.
+    // Handle the existing popup continue button click.
     continuePopupBtn.addEventListener('click', function() {
       if(document.getElementById('option1').checked) {
         window.location.href = "step4.html";
       } else if(document.getElementById('option3').checked) {
         window.location.href = "step3a.html";
       }
+    });
+    
+    // Startup Popup: When the startup continue button is clicked, close the startup popup.
+    const startupPopupContainer = document.getElementById("popupContainerStartup");
+    const continueStartupBtn = document.getElementById("continue_button_popup_startup");
+    continueStartupBtn.addEventListener('click', function() {
+      startupPopupContainer.style.display = "none";
     });
   </script>
 </body>
