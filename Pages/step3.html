@@ -6,18 +6,16 @@
   <meta name="viewport" content="width=375, initial-scale=1.0">
   <title>Construction Mode – Dual Control, Object Panels, Hide/Unhide, CSS & HTML</title>
   <style>
- /* Reset default margin/padding, give a neutral background */
+    /* Base layout */
     body {
       margin: 0;
       padding: 0;
-      /* Center the phone container horizontally */
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
-      background: #f0f0f0; /* Just a neutral background for contrast */
+      background: #f0f0f0;
     }
-    /* Smartphone container simulation */
     .phone-container {
       position: relative;
       width: 375px;
@@ -26,8 +24,12 @@
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       background-color: #ADD8E6;
+      transition: opacity 0.3s ease;
     }
-    /* H1 element styling */
+    /* When zoom-active, hide everything except header and zoomed video */
+    .phone-container.zoom-active > :not(.h1-controls):not(.video-container.zoomed) {
+      display: none;
+    }
     .h1-controls {
       position: absolute;
       left: 50%;
@@ -43,25 +45,21 @@
       white-space: nowrap;
       z-index: 1000;
     }
-/* Style for the home image using percentage values */
     #homeImage {
       position: absolute;
-      top: 88%;      /* Adjust as needed */
-      left: 80%;     /* Adjust as needed */
-      width: 20%;   /* Adjust width */
-      height: 13%;  /* Adjust height */
-      z-index: 1000
+      top: 88%;
+      left: 80%;
+      width: 20%;
+      height: 13%;
+      z-index: 1000;
     }
-
-
-    /* Common Transparent Label CSS */
     .transparent-label {
       position: absolute;
       left: 5%;
       top: 85%;
       font-size: 20px;
-      color: rgb(0, 0, 0);
-      background-color: rgba(0, 0, 0, 0);
+      color: #000;
+      background-color: rgba(0,0,0,0);
       font-family: "Comic Sans MS", cursive, sans-serif;
       padding: 0;
       margin: 0;
@@ -70,71 +68,46 @@
       width: 85%;
       height: 18%;
     }
-    /* Label Overrides */
-    #jaw_thrust {
-      left: 6%;
-      top: 38%;
-      
+    /* Label overrides */
+    #jaw_thrust { left: 6%; top: 38%; }
+    #remove_obstructions { top: 12%; left: 6%; font-size: 18px; }
+    #airway {
+      top: 63%;
+      left: 75%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: yellow;
+      font-weight: bold;
     }
-    #remove_obstructions {
-      top: 12%;
-      left: 6%;
-      font-size: 18px;
+    #spinal {
+      top: 60%;
+      left: 55%;
+      transform: translateX(-50%) scale(1);
+      font-size: 16px;
+      width: 95%;
+      color: red;
+      animation: pulse 3s infinite;
     }
-#airway {
-  top: 63%;
-  left: 75%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  color: yellow;
-  font-weight: bold;
-}
-
-#spinal {
-  top: 60%;
-  left: 55%;
-  transform: translateX(-50%) scale(1);
-  font-size: 16px;
-  width: 95%;
-  color: red;
-  animation: pulse 3s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: translateX(-50%) scale(1);
-  }
-  5% {
-    transform: translateX(-50%) scale(1.2);
-  }
-  10% {
-    transform: translateX(-50%) scale(1);
-  }
-  15% {
-    transform: translateX(-50%) scale(1.2);
-  }
-  20% {
-    transform: translateX(-50%) scale(1);
-  }
-  100% {
-    transform: translateX(-50%) scale(1);
-  }
-}
-
-
-    /* CSS for the continue button (placed in the phone container) */
+    @keyframes pulse {
+      0%   { transform: translateX(-50%) scale(1); }
+      5%   { transform: translateX(-50%) scale(1.2); }
+      10%  { transform: translateX(-50%) scale(1); }
+      15%  { transform: translateX(-50%) scale(1.2); }
+      20%  { transform: translateX(-50%) scale(1); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
     #movablecontinue_button {
       position: absolute;
       left: 22.77%;
       top: 83.5%;
       font-size: 16px;
-      color: rgb(0, 0, 0);
-      background-color: rgba(0, 0, 0, 0);
+      color: #000;
+      background-color: rgba(0,0,0,0);
       font-family: Arial, sans-serif;
       padding: 0;
       margin: 0;
       white-space: normal;
-      z-index: 90;
+      z-index: 160;
       width: 47.45%;
       height: 21%;
       cursor: pointer;
@@ -143,80 +116,144 @@
     #movablecontinue_button:hover {
       transform: scale(1.25);
     }
- /* CSS for the yankaur.png (placed in the phone container) */
     #yankaur {
-  position: absolute;
-  top: 10%;
-  left: 60%;
-  width: 25%;
-  height: 25%;
-  z-index: 100;
-}
-      
-     
-    
-    /* Generic Video container styling */
+      position: absolute;
+      top: 10%;
+      left: 60%;
+      width: 25%;
+      height: 25%;
+      z-index: 100;
+    }
+    /* Video container styling */
     .video-container {
       position: absolute;
       width: 50%;
       height: 25%;
       border-radius: 25px;
       overflow: hidden;
-      z-index: 50;
+      z-index: 150;
+      cursor: pointer;
+      transition: top 0.3s ease, left 0.3s ease, transform 0.3s ease;
     }
-    /* Specific positioning for Video One */
-    #video1 {
-      top: 35%;
-      left: 46%;
-    }
-    /* Specific positioning for Video Two */
-    #video2 {
-      top: 9%;  /* Adjust this value as needed */
-       left: 46%; /* Adjust this value as needed */
-    }
-/* Specific positioning for Video three */
+    /* Positioning for individual video containers */
+    #video1 { top: 35%; left: 46%; }
+    #video2 { top: 9%; left: 46%; }
     #video3 {
-      top: 68%;  /* Adjust this value as needed */
-      left: 1%; /* Adjust this value as needed */
-      clip-path: inset(10px 10px 10px 10px); /*top,right,bottom,left*/
+      top: 68%;
+      left: 1%;
+      clip-path: inset(10px 10px 10px 10px);
       width: 50%;
-      height: 25%
+      height: 25%;
     }
-/* Specific positioning for Video four */
     #video4 {
-      top: 68%;  /* Adjust this value as needed */
-      left: 50%; /* Adjust this value as needed */
-      clip-path: inset(10px 10px 10px 10px); /*top,right,bottom,left*/
+      top: 68%;
+      left: 50%;
+      clip-path: inset(10px 10px 10px 10px);
       width: 50%;
-      height: 25%
+      height: 25%;
     }
-    /* Video element styling */
     .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-container.zoomed {
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) scale(1.5) !important;
+      z-index: 999 !important;
+    }
+    /* Popup container styling */
+    .popup-container {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      background: rgba(255, 255, 255, 0.95);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+      box-sizing: border-box;
     }
-    
+    /* Popup text styling */
+    .popup-text {
+      font-family: Arial, sans-serif;
+      font-size: 26px;
+      text-align: center;
+      color: #000;
+      margin-bottom: 40px;
+    }
+    /* Slider (toggle) styling */
+    .toggle-container {
+      position: relative;
+      width: 150px;
+      height: 50px;
+      background: linear-gradient(145deg, #444, #222);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+    .toggle-container input[type="radio"] {
+      display: none;
+    }
+    .toggle-slider {
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+      border-radius: 50%;
+      transform: translate(-10%, -50%);
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+    }
+    /* Adjust slider position and color when radios are checked */
+    #option1:checked ~ .toggle-slider {
+      left: 0;
+      background: linear-gradient(145deg, #00FF00, #008000);
+    }
+    #option2:checked ~ .toggle-slider {
+      left: 50px;
+      background: linear-gradient(145deg, #FFFF00, #FFD700);
+    }
+    #option3:checked ~ .toggle-slider {
+      left: 100px;
+      background: linear-gradient(145deg, #FF0000, #8B0000);
+    }
+    .toggle-label {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      z-index: 1;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      font-weight: bold;
+    }
+    /* Popup continue button styling */
+    #continue_button_popup {
+      position: relative;
+      width: 80%;
+      max-width: 300px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <!-- Smartphone Container -->
   <div class="phone-container" id="phoneContainer">
-    <!-- H1 element -->
     <h1 class="h1-controls" id="h1Element">Oxygen Modality Decision Making</h1>
-    
-  <!--home button redirect-->
-<img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
-
-<!-- Home button redirect -->
-<a href="https://concussed8.github.io/Oxygen_Modality/">
-  <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
-</a>
-
-    <!-- "Perform" Task Section with Bullet List -->
+    <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+    <a href="https://concussed8.github.io/Oxygen_Modality/">
+      <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+    </a>
     <div id="jaw_thrust" class="transparent-label">
       <span>Perform:</span>
       <ul>
@@ -224,8 +261,6 @@
         <li>Jaw-Thrust</li>
       </ul>
     </div>
-    
-    <!-- "Remove" Task Section with Bullet List -->
     <div id="remove_obstructions" class="transparent-label">
       <span>Remove:</span>
       <ul>
@@ -233,35 +268,28 @@
         <li>Fluids</li>
       </ul>
     </div>
-    
     <label id="airway" class="transparent-label">Insert Airway</label>
     <label id="spinal" class="transparent-label">**Maintain spinal precautions if warranted**</label>
     
-    <!-- First Video Container -->
+    <!-- Video container 1 -->
     <div id="video1" class="video-container">
       <video autoplay loop muted playsinline>
         <source src="https://concussed8.github.io/Oxygen_Modality/Images/jaw_thrust.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-
+    
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/yankaur.png" alt="Yankaur" id="yankaur">
-
-    <!-- Second Video Container -->
-    <!--<div id="video2" class="video-container">
-      <video autoplay loop muted playsinline>
-        <source src="https://concussed8.github.io/Oxygen_Modality/Images/jaw_thrust.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>-->
-  <!-- Third Video Container -->
+    
+    <!-- Video container 3 -->
     <div id="video3" class="video-container">
       <video autoplay loop muted playsinline>
         <source src="https://concussed8.github.io/Oxygen_Modality/Images/NPA.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-<!-- Forth Video Container -->
+    
+    <!-- Video container 4 -->
     <div id="video4" class="video-container">
       <video autoplay loop muted playsinline>
         <source src="https://concussed8.github.io/Oxygen_Modality/Images/OPA.mp4" type="video/mp4">
@@ -269,13 +297,74 @@
       </video>
     </div>
     
-    <!-- Single Continue Button in the phone container -->
+    <!-- Continue button (outside popup) that triggers the popup -->
     <img src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button.png" 
          alt="continue_button" class="movable hideable" id="movablecontinue_button">
-    </div>
     
+    <!-- Popup Container -->
+    <div class="popup-container" id="popupContainer">
+      <!-- Popup Text -->
+      <div class="popup-text">Was clearing the airway effective in maintainig patentcy?</div>
+      <!-- Slider element -->
+      <div class="toggle-container">
+        <input type="radio" name="toggle" id="option1">
+        <input type="radio" name="toggle" id="option2" checked>
+        <input type="radio" name="toggle" id="option3">
+        <div class="toggle-slider"></div>
+        <label class="toggle-label" for="option1">YES</label>
+        <label class="toggle-label" for="option2">0</label>
+        <label class="toggle-label" for="option3">NO</label>
+      </div>
+      <!-- Popup Continue Button (hidden until a non-neutral option is selected) -->
+      <img id="continue_button_popup" src="https://concussed8.github.io/Oxygen_Modality/Images/continue_button_popup.png" alt="continue_button_popup">
+    </div>
+  </div>
+  
   <script>
-    // JavaScript functionality can be added here if needed.
+    // Toggle the zoomed state for video containers and update phone container visibility.
+    const phoneContainer = document.getElementById("phoneContainer");
+    document.querySelectorAll('.video-container').forEach(function(container) {
+      container.addEventListener('click', function() {
+        container.classList.toggle('zoomed');
+        if(document.querySelector('.video-container.zoomed')) {
+          phoneContainer.classList.add('zoom-active');
+        } else {
+          phoneContainer.classList.remove('zoom-active');
+        }
+      });
+    });
+    
+    // Show the popup when the original continue button is clicked.
+    const continueBtn = document.getElementById("movablecontinue_button");
+    const popupContainer = document.getElementById("popupContainer");
+    continueBtn.addEventListener('click', function() {
+      popupContainer.style.display = "flex";
+    });
+    
+    // Hide the popup continue button initially.
+    const continuePopupBtn = document.getElementById("continue_button_popup");
+    continuePopupBtn.style.display = "none";
+    
+    // Add event listeners for slider radio buttons to show the popup continue button when either YES or NO is selected.
+    const radios = document.querySelectorAll('.toggle-container input[type="radio"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        if(document.getElementById('option1').checked || document.getElementById('option3').checked) {
+          continuePopupBtn.style.display = "block";
+        } else {
+          continuePopupBtn.style.display = "none";
+        }
+      });
+    });
+    
+    // Handle the popup continue button click.
+    continuePopupBtn.addEventListener('click', function() {
+      if(document.getElementById('option1').checked) {
+        window.location.href = "step4.html";
+      } else if(document.getElementById('option3').checked) {
+        window.location.href = "step3a.html";
+      }
+    });
   </script>
 </body>
 </html>
