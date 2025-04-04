@@ -350,6 +350,13 @@
         }
       });
     });
+ // Add event listener for the continue button
+    continueBtn.addEventListener('click', () => {
+      // Only redirect if the slider is in the right position (option3 is checked)
+      if (document.getElementById('option3').checked) {
+        window.location.href = "https://concussed8.github.io/Oxygen_Modality/Pages/step6a.html";
+      }
+    });
   </script>
 </body>
 </html>

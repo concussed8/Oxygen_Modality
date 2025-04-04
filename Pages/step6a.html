@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Simulate a smartphone viewport -->
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Phone Container with Text and Images</title>
+  <style>
+    /* Reset default margin/padding and set background */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #f0f0f0;
+    }
+
+    /* Smartphone container simulation */
+    .phone-container {
+      position: relative;
+      width: 375px;
+      height: 667px;
+      border: 4px solid #4169E1;
+      background-color: #ADD8E6;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+
+    /* H1 element inside the phone container */
+    .h1-controls {
+      position: absolute;
+      top: 1%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      color: #ffffff;
+      background-color: #4169E1;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 10px 20px;
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    /* Separate styling for each image */
+
+    /* Home image styling */
+    #homeImage {
+      position: absolute;
+      top: 88%;   /* Adjust the top position as needed */
+      left: 80%;  /* Adjust the left position as needed */
+      width: 20%; /* Adjust width as needed */
+      height: 13%;
+    }
+
+    /* BiPAP image styling */
+    #BiPAP {
+      position: absolute;
+      top: 45%;   /* Adjust the top position as needed */
+      left: 10%;  /* Adjust the left position as needed */
+      width: 40%; /* Adjust width as needed */
+      height: auto;
+    }
+
+    /* Airvo image styling */
+    #airvo {
+      position: absolute;
+      top: 30%;   /* Adjust the top position as needed */
+      left: 10%;  /* Adjust the left position as needed */
+      width: 30%; /* Adjust width as needed */
+      height: auto;
+    }
+
+    /* Vented image styling */
+    #vented {
+      position: absolute;
+      top: 65%;   /* Adjust the top position as needed */
+      left: 10%;  /* Adjust the left position as needed */
+      width: 30%; /* Adjust width as needed */
+      height: auto;
+    }
+
+    /* Hover effect for clickable images */
+    .phone-container a img {
+      transition: transform 0.3s ease;
+    }
+
+    .phone-container a img:hover {
+      transform: scale(1.25);
+      cursor: pointer;
+    }
+
+    /* Shared styling for the three text lines */
+    .shared-text {
+      position: absolute;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      color: #000;
+      font-size: 18px;
+    }
+
+    /* Individual positioning for each shared text */
+    #textAirvo {
+      top: 30%;   /* Adjust as needed */
+      left: 60%;   /* Adjust as needed */
+    }
+
+    #textBiPAP {
+      top: 55%;   /* Adjust as needed */
+      left: 60%;   /* Adjust as needed */
+    }
+
+    #textMechVent {
+      top: 75%;   /* Adjust as needed */
+      left: 60%;   /* Adjust as needed */
+    }
+
+    /* Styling for the fourth text line with unique CSS */
+    .special-text {
+      position: absolute;
+      font-family: Arial, sans-serif;
+      color: #333;
+      font-size: 20px;
+      top: 12%;   /* Adjust as needed */
+      left: 5%;   /* Adjust as needed */
+    }
+  </style>
+</head>
+<body>
+  <!-- Phone Container -->
+  <div class="phone-container">
+    <h1 class="h1-controls">Oxygen Modality Decision Making</h1>
+
+    <!-- Shared text lines -->
+    <p id="textAirvo" class="shared-text">AIRVO ?</p>
+    <p id="textBiPAP" class="shared-text">BiPAP ?</p>
+    <p id="textMechVent" class="shared-text">Mechanical Ventilation ?</p>
+
+    <!-- Fourth text line with unique styling -->
+    <p class="special-text">
+      Increase Oxygen delivery and switch therapies. <span style="font-weight: bold; font-size: 22px;">CLICK</span> on the image to obtain delivery specific sresources:
+    </p>
+
+    <!-- Home button redirect -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/">
+      <img id="homeImage" src="https://concussed8.github.io/Oxygen_Modality/Images/home.png" alt="Home">
+    </a>
+
+    <!-- BiPAP image clickable link redirecting to step7 -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/Pages/step7.html">
+      <img id="BiPAP" src="https://concussed8.github.io/Oxygen_Modality/Images/BiPAP.gif" alt="BiPAP">
+    </a>
+
+    <!-- Airvo image clickable link redirecting to step5a -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/Pages/step5a.html">
+      <img id="airvo" src="https://concussed8.github.io/Oxygen_Modality/Images/airvo.png" alt="Airvo">
+    </a>
+
+    <!-- Vented image clickable link redirecting to step3a -->
+    <a href="https://concussed8.github.io/Oxygen_Modality/Pages/step3a.html">
+      <img id="vented" src="https://concussed8.github.io/Oxygen_Modality/Images/vented.png" alt="Vented">
+    </a>
+  </div>
+</body>
+</html>
